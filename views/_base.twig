@@ -1,0 +1,171 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Modèle de page#}
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/global/general.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/phone/general.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/phone/menu.css">
+    {% block style %}{% endblock %}
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="Xelyos Team - Thomas">
+    <meta name="keywords" content="{% block key %}{% endblock %}, {{ _nomFaction }}, Site Factice, {{ _jeuServeur }}, {{ _nomServeur }}">
+    <title>{{ _BDDFaction }}{% block title %}{% endblock %}</title>
+  </head>
+
+  <body>
+    {# Menu de naviguation Ordinateur #}
+    <header>
+      <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+
+      <div class="croix" id="croix">
+        <img src="/assets/img/croix.png" alt="" onclick="close_menu();">
+      </div>
+
+      <div class="barre" id="barre">
+        <img src="/assets/img/barre.png" alt="" onclick="open_menu();">
+      </div>
+
+      <div class="nav_bar" id="menu_navigation">
+        {% if _agent.admin == 1 %}
+        <ul class="menu_deroulant">
+          <li><a class="top">Menu Admin</a>
+            <ul>
+              <li><a href="/administration/ajout">Ajouter</a></li>
+              <li><a href="/administration/modification">Modification</a></li>
+              <li><a href="/administration/parametre-serveur">Serveur</a></li>
+              <li><a href="/administration/historique">Historique</a></li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <p></p>
+        {% endif %}
+
+        {% if _agent.hab_1 > 0 %}
+        <ul class="menu_deroulant">
+          <li><a class="top">Ecole</a>
+            <ul>
+              <li><a href="/recrutement">Recrutement</a></li>
+              <li><a href="/{{ _membreFaction }}?ems_name=&ems_firstname=&ems_matricule=">Gestion {{ _BDDFaction }}</a></li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <p></p>
+        {% endif %}
+
+        <ul class="menu_deroulant">
+          <li><a href="/" class="top">Compte</a>
+            <ul>
+              <li><a href="/formation">Formation</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="menu_deroulant">
+          <li><a class="top">Registre</a>
+            <ul>
+              <li><a href="/civil?civil_name=&civil_firstname=&civil_phone=">Civil</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="menu_deroulant">
+          <li><a class="top">Soins</a>
+            <ul>
+              <li><a href="/intervention">Intervention</a></li>
+              <li><a href="/ordonnance">Ordonnance</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="menu_deroulant">
+          <li><a class="top">Générer</a>
+            <ul>
+              <li><a href="/arret-travail">Arret de travail</a></li>
+              <li><a href="/certificat-ppa">Certificat PPA</a></li>
+              <li><a href="/certificat-travail">Certificat travail</a></li>
+            </ul>
+          </li>
+        </ul>
+        <p><a href="/discussion-interne">Chat</a></p>
+        <p><a href="/connexion">Deconnexion</a></p>
+      </div>
+
+      {# Menu de navigation pour téléphone #}
+      <div class="mobile_phone" id="phone_menu">
+
+        {# Menu Admin #}
+        <button id="1" type="button" onclick="afficheSousMenu(1)">Menu Admin</button>
+
+        <button id="10" type="button" onclick="redirectionButton(10, 0)">Ajouter</button>
+        <button id="11" type="button" onclick="redirectionButton(11, 0)">Modification</button>
+        <button id="12" type="button" onclick="redirectionButton(12, 0)">Serveur</button>
+        <button id="13" type="button" onclick="redirectionButton(13, 0)">Historique</button>
+        <button id="14" type="button" onclick="maskSousMenu()">Retour</button>
+
+        {# Ecole #}
+        <button id="2" type="button" onclick="afficheSousMenu(2)">Ecole</button>
+
+        <button id="20" type="button" onclick="redirectionButton(20, 0)">Recrutement</button>
+        <button id="21" type="button" onclick="redirectionButton(21, '{{ _membreFaction }}')">Gestion {{ _BDDFaction }}</button>
+        <button id="22" type="button" onclick="maskSousMenu()">Retour</button>
+
+        {# Info #}
+        <button id="3" type="button" onclick="afficheSousMenu(3)">Info</button>
+        <button id="30" type="button" onclick="redirectionButton(30, 0)">Compte</button>
+        <button id="31" type="button" onclick="redirectionButton(31, 0)">Formation</button>
+        <button id="32" type="button" onclick="maskSousMenu()">Retour</button>
+
+        {# Registre #}
+        <button id="4" type="button" onclick="afficheSousMenu(4)">Registre</button>
+
+        <button id="40" type="button" onclick="redirectionButton(40, 0)">Civil</button>
+        <button id="41" type="button" onclick="maskSousMenu()">Retour</button>
+
+        {# Soins #}
+        <button id="5" type="button" onclick="afficheSousMenu(5)">Soins</button>
+
+        <button id="50" type="button" onclick="redirectionButton(50, 0)">Intervention</button>
+        <button id="51" type="button" onclick="redirectionButton(51, 0)">Ordonnance</button>
+        <button id="52" type="button" onclick="maskSousMenu()">Retour</button>
+
+        {# Générer #}
+        <button id="6" type="button" onclick="afficheSousMenu(6)">Générer</button>
+
+        <button id="60" type="button" onclick="redirectionButton(60, 0)">Arret de travail</button>
+        <button id="61" type="button" onclick="redirectionButton(61, 0)">Certificat PPA</button>
+        <button id="62" type="button" onclick="redirectionButton(62, 0)">Certificat travail</button>
+        <button id="63" type="button" onclick="maskSousMenu()">Retour</button>
+
+        {# Chat #}
+        <button id="7" type="button" onclick="redirectionButton(7, 0)">Chat</button>
+
+        {# Deconnexion #}
+        <button id="8" type="button" onclick="redirectionButton(8, 0)">Deconnexion</button>
+      </div>
+
+    </header>
+
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>{{ _nomcompletFaction }}</p>
+      <p>2020</p>
+      <p>Developped by Xelyos Team</p>
+      <p>V {{ _Version }}</p>
+    </footer>
+
+    {% block script %}{% endblock %}
+    <script type="text/javascript" src="/assets/script/menu.js"></script>  <!-- Menu pour téléphone -->
+  </body>
+
+</html>

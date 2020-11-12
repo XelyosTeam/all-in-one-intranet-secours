@@ -1,0 +1,117 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/division_image.css">
+{% endblock %}
+
+{% block description %}Ajout Administration{% endblock %}
+
+{% block key %}Ajout Administration{% endblock %}
+
+{% block title %} - Mode Admin -> Ajout{% endblock %}
+
+{% block main %}
+<section class="contenu">
+  <h1>Ajouter Intervention</h1>
+
+  <form class="connexion" method="POST">
+
+    <div>
+      <label for="name">Entrer le nom de l'intervention :</label>
+      <input type="text" name="name_inter" id="name" placeholder="Nom de l'intervention" required>
+    </div>
+
+    <div>
+      <p id="confirm_inter">Intervention ajoutée</p>
+    </div>
+
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button" onclick="addInterventionList();">Ajouter</button>
+    </div>
+  </form>
+</section>
+
+<section class="contenu">
+  <h1>Ajouter Médicament</h1>
+
+  <form class="connexion" method="POST">
+
+    <div>
+      <label for="name">Entrer le nom du médicament :</label>
+      <input type="text" name="med_name" id="med_name" placeholder="Nom médicament" required>
+    </div>
+
+    <div>
+      <label for="name">Description du médicament :</label>
+      <textarea name="med_descript" id="med_descript" placeholder="Entrer la description rapide du médicament"></textarea>
+    </div>
+
+    <div>
+      <p id="confirm_med">Médicament ajouté</p>
+    </div>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button" onclick="addMedicamentList();">Ajouter</button>
+    </div>
+  </form>
+</section>
+
+{# Déclarer un enseignant #}
+<section class="contenu">
+  <h1>Ajouter un {{ _Hab1|lower }}</h1>
+  <form class="connexion" action="/add/prof" method="post">
+
+    <!-- Division des parties -->
+    <section class="div_content_photo">
+      <section class="part_add">
+        <div>
+          <label>{{ _BDDFaction }} :</label>
+          <select id="ems_type" name="nom_ems" onchange="affiche_photo_ems();">
+            {% for agent in agents %}
+            <option value="{{ agent.ems_id }}">{{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}</option>
+            {% else %}
+              <option>Tous vos agents sont enseignant</option>
+            {% endfor %}
+          </select>
+        </div>
+      </section>
+
+      <section class="part_img">
+        <div>
+          <img id="image_ems" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+        </div>
+      </section>
+    </section>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Ajouter</button>
+    </div>
+
+    <div>
+      <p id="confirm_prof">{{ _Hab1|capitalize }} ajouté</p>
+    </div>
+  </form>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script src="/assets/script/event_saisie.js"></script>
+<script type="text/javascript">
+  affiche_photo_ems();
+  document.getElementById("confirm_inter").style.display = "none";
+  document.getElementById("confirm_med").style.display = "none";
+  document.getElementById("confirm_prof").style.display = "none";
+</script>
+{% endblock %}

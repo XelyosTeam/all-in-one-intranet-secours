@@ -1,0 +1,110 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/division_image.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/ordonnance.css">
+{% endblock %}
+
+{% block description %}Générer ordonnance{% endblock %}
+
+{% block key %}Générer ordonnance{% endblock %}
+
+{% block title %} - Générer ordonnance{% endblock %}
+
+{% block main %}
+<section class="contenu">
+  <h1>Générer Ordonnance</h1>
+
+  <form class="connexion" action="" method="POST">
+    {# Sélection du citoyen #}
+    <section class="div_content_photo">
+      <section class="part_add">
+        <div>
+          <label>Citoyen :</label>
+
+          <select id="personne_type" name="id_civil" onchange="affiche_photo_personne();">
+            {% for civil in civils %}
+            <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </section>
+
+      <section class="part_img">
+        <div>
+          <img id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+        </div>
+      </section>
+    </section>
+
+
+    <div id="Liste_medicament">
+      <section id="medicament_1" class="ordonnance">
+        {# Section de gauche #}
+        <div id="nom_med_1" class="left_part">
+          <label>Nom médicament</label>
+          <select id="liste_1" onchange="affiche_suite(1);">
+            <option value="0">Sélection médicament</option>
+            <option value="0">============================</option>
+            {% for medicament in medicaments %}
+            <option value="{{ medicament.id }}">{{ medicament.nom|capitalize }}</option>
+            {% endfor %}
+          </select>
+          <p id="desc_1">deaz</p>
+        </div>
+
+        {# Section de droite #}
+        <div id="content_1" class="right_part">
+          <div id="qtn_1">
+            <label>Quantité :</label>
+            <input id="qtn_value_1" value="1" type="number" min="1" max="5" placeholder="Quantité" required>
+          </div>
+
+          <div id="T_1">
+            <label>Période :</label>
+            <input id="T_value_1" value="1" type="number" min="1" max="21" placeholder="Périodes en jour" required>
+          </div>
+
+          <div id="frq_1">
+            <label>Fréquences :</label>
+            <select id="frq_value_1">
+              <option value="1">Matin</option>
+              <option value="2">Midi</option>
+              <option value="3">Soir</option>
+              <option value="4">Matin/Soir</option>
+              <option value="5">Matin/Midi</option>
+              <option value="6">Midi/Soir</option>
+              <option value="7">Matin/Midi/Soir</option>
+            </select>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button" onclick="genererOrdonnance();">Enregistrer</button>
+    </div>
+  </form>
+</section>
+
+
+
+{% endblock %}
+
+{% block script %}
+<script src="/assets/script/ordonnance.js"></script>
+<script src="/assets/script/event_saisie.js"></script>
+<script type="text/javascript">
+  initialisationContent(1);
+</script>
+{% endblock %}

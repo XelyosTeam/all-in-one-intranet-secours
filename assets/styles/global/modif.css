@@ -1,0 +1,126 @@
+/* PC */
+nav
+{
+  position: fixed;
+  left: 3%;
+  top: 47%;
+  border-radius: 10px;
+  background-color: #EDEFF5;
+  padding: 1% 1% 1% 1%;
+}
+
+nav a
+{
+  display: block;
+  padding-top: 1%;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.1em;
+}
+
+nav a:hover
+{
+  color: #900000;
+}
+
+nav p
+{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #900000;
+  font-size: 1.2em;
+}
+
+
+.info_pesonne
+{
+  display: block;
+  margin-top: 2%;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 10px;
+  background-color: #EDEFF5;
+}
+
+.info_pesonne h1
+{
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: #900000;
+  border-bottom: 2px solid #900000;
+}
+
+.info_pesonne div label
+{
+  margin-left: 3%;
+  text-align: left;
+  font-weight: bold;
+  color: #900000;
+  font-size: 1.25em;
+}
+
+.info_pesonne div input
+{
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 45%;
+  height: 20%;
+  background-color: #EDEFF5;
+  color: #900000;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.info_pesonne div select
+{
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 45%;
+  height: 20%;
+  background-color: #EDEFF5;
+  color: #900000;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.info_pesonne div textarea
+{
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: justify;
+  margin-left: 10%;
+  padding: 1%;
+  width: 80%;
+  background-color: #EDEFF5;
+  color: #900000;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.info_pesonne .short
+{
+  width: 30%;
+}
+
+.info_pesonne .btn
+{
+  text-align: right;
+}
+
+.info_pesonne .btn button
+{
+  text-align: right;
+  margin-right: 5%;
+  margin-bottom: 2%;
+  border: none;
+  border-radius: 10px;
+  background-color: #900000;
+  color: #fff;
+  padding: 2%;
+  font-size: 1.25em;
+}

@@ -1,0 +1,52 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/form.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/add.css">
+{% endblock %}
+
+{% block description %}Modification mot de passe{% endblock %}
+
+{% block key %}Modification mot de passe{% endblock %}
+
+{% block title %}Modification mot de passe{% endblock %}
+
+{% block main %}
+<section class="contenu">
+  <h1>Changer le mot de passe</h1>
+
+  <form class="connexion" action="/edit/mdp" method="POST">
+
+    <div>
+      <label for="name">Ancien :</label>
+      <input type="password" name="ancien_mdp" id="name" placeholder="Ancien mot de passe" required>
+    </div>
+
+    <div>
+      <label for="name">Nouveau :</label>
+      <input type="password" name="new_mdp" id="name" placeholder="Nouveau mot de passe" required>
+    </div>
+
+    <div>
+      <label for="name">Confirmer :</label>
+      <input type="password" name="confirm_mdp" id="name" placeholder="Confirmer le mot de passe" required>
+    </div>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Changer</button>
+    </div>
+  </form>
+
+</section>
+{% endblock %}
+
+{% block script %}{% endblock %}

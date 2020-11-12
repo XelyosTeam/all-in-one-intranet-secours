@@ -1,0 +1,73 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/division_image.css">
+{% endblock %}
+
+{% block description %}Arret de travail{% endblock %}
+
+{% block key %}Arret de travail{% endblock %}
+
+{% block title %} - Arret de travail{% endblock %}
+
+{% block main %}
+<section class="contenu">
+  <h1>Ajout Arrêt de Travail</h1>
+
+  <form class="connexion" action="/insert/arret" method="post">
+
+    <!-- Division des parties -->
+    <section class="div_content_photo">
+      <section class="part_add">
+        <div>
+          <label>Citoyen* :</label>
+
+          <select id="personne_type" name="id_civil" onchange="affiche_photo_personne();">
+            {% for civil in civils %}
+            <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{civil.prenom|capitalize }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label for="time_stop">Durée :</label>
+          <input class="short" type="number" name="time" id="time_stop" min="1" placeholder="Durée en jour" required>
+        </div>
+
+        <div>
+          <label>Motif :</label>
+          <textarea name="motif" placeholder="Ecriver le motif de l'arrêt de travail"></textarea>
+        </div>
+      </section>
+
+      <section class="part_img">
+        <div>
+          <img id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+        </div>
+      </section>
+    </section>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Générer</button>
+    </div>
+  </form>
+
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="/assets/script/event_saisie.js"></script>
+<script type="text/javascript">
+  affiche_photo_personne();
+</script>
+{% endblock %}

@@ -1,0 +1,100 @@
+nav
+{
+  position: fixed;
+  left: 3%;
+  top: 47%;
+  border-radius: 10px;
+  background-color: #EDEFF5;
+  padding: 1% 1% 1% 1%;
+}
+
+nav a
+{
+  display: block;
+  padding-top: 1%;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.1em;
+}
+
+nav a:hover
+{
+  color: #900000;
+}
+
+nav p
+{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #900000;
+  font-size: 1.2em;
+}
+
+
+.contenu
+{
+  display: block;
+  margin-top: 2%;
+  margin-left: 25%;
+  margin-right: 15%;
+  border-radius: 10px;
+  background-color: #EDEFF5;
+  text-align: center;
+}
+
+
+.contenu
+{
+  display: block;
+  margin-top: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-radius: 10px;
+  background-color: #EDEFF5;
+  text-align: center;
+}
+
+.contenu h1
+{
+  padding-top: 1%;
+  padding-left: 2%;
+  color: #900000;
+}
+
+.contenu h2
+{
+  text-align: left;
+  padding-top: 1%;
+  padding-left: 2%;
+  color: #900000;
+  text-decoration: underline;
+}
+
+.contenu h3
+{
+  text-align: left;
+  margin-bottom: -2%;
+  padding-left: 2%;
+  text-decoration: underline;
+}
+
+.contenu p
+{
+  padding: 0 4% 2% 4%;
+  text-align: justify;
+  font-size: 1.5em;
+}
+
+.contenu a
+{
+  padding: 0% 2% 2% 2%;
+  text-align: center;
+  font-size: 1.25em;
+  color: #000;
+}
+
+.contenu a:hover
+{
+  color: #900000;
+  text-decoration: underline;
+}

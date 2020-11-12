@@ -1,0 +1,46 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/profil.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/profil.css">
+{% endblock %}
+
+{% block description %}Arret travail{% endblock %}
+
+{% block key %}Arret travail{% endblock %}
+
+{% block title %} - Arret travail{% endblock %}
+
+{% block main %}
+
+{# Fiche Civil #}
+{% set _etat_ = {'goBack': 1} %}
+{% include "/templates/fiche_civil.twig" with _etat_ %}
+
+<section class="information_casier">
+  <h1>Certificat Arrêt de Travail</h1>
+  <img src="/assets/img/logo.png" alt="">
+  <p>Par ce présent document le centre Hospitalier de Mexico atteste l’arrêt
+     de travail de <strong>{% if civil.sexe == "M" %}Monsieur{% else %}Madame{% endif %} {{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</strong>
+     pour la ou les raisons suivantes : <strong>{{ arret.motif }}</strong>.
+   </p>
+   <p>Cet arrêt de travail prend effet à la date du <strong>{{ arret.enregistrer_le|date("d/m/Y") }}
+   </strong> au <strong>{{ arret.fin_le|date("d/m/Y") }}</strong>.
+   </p>
+   <p>En cas de prolongation, un nouveau certificat vous sera remis.</p>
+   <p>Déliverée par : <strong><a href="/{{ _membreFaction }}/{{ ems.matricule }}">{{ ems.grade|capitalize }} {{ ems.nom|capitalize }}</a></p>
+   <div class="lien">
+     <a href="/impression/arret-travail/{{ arret.id }}">Imprimer le certificat</a>
+   </div>
+</section>
+{% endblock %}
+
+{% block script %}{% endblock %}

@@ -1,0 +1,29 @@
+/* Phone */
+@media (max-width:1001px)
+{
+
+  body /* Trouver une solution pour l'améliorer */
+  {
+    /*background: #CACACA;*/
+    background-image: url(/assets/img/backgroundPhone.jpg);
+    background-attachment: fixed;
+  }
+
+  header img
+  {
+    margin-top: 15%;
+    width: 35%;
+  }
+
+  footer
+  {
+    margin-top: 15%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+  }
+
+  footer p
+  {
+    font-size: 2em;
+  }
+}

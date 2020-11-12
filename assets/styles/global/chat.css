@@ -1,0 +1,39 @@
+/* Global */
+.contenu::-webkit-scrollbar
+{
+  display: contents;
+}
+
+.chat
+{
+  display: block;
+  margin: auto;
+  padding: 2%;
+  border-radius: 5px;
+  border: black 1px solid;
+  background-color: #fff;
+  max-width: 90%;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.chat .sender
+{
+  text-align: right;
+}
+
+.chat .receiver
+{
+  text-align: left;
+}
+
+.chat .ems
+{
+  color: red;
+}
+
+.chat .cop
+{
+  color: blue;
+}

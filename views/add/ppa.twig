@@ -1,0 +1,76 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/division_image.css">
+{% endblock %}
+
+{% block description %}Certificat PPA{% endblock %}
+
+{% block key %}Certificat PPA{% endblock %}
+
+{% block title %} - Certificat PPA{% endblock %}
+
+{% block main %}
+<section class="contenu">
+  <h1>Certification PPA</h1>
+
+  <form class="connexion" action="/insert/ppa" method="POST">
+
+    <!-- Division des parties -->
+    <section class="div_content_photo">
+      <section class="part_add">
+        <div>
+          <label>Citoyen :</label>
+
+          <select id="personne_type" name="id_civil" onchange="affiche_photo_personne();">
+            {% for civil in civils %}
+            <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label>Etat :</label>
+          <select name="etat_ppa">
+            <option value="0">Non validé</option>
+            <option value="1">Validé</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Motif :</label>
+          <textarea name="motif" placeholder="Motif de la décision" required></textarea>
+        </div>
+      </section>
+
+      <section class="part_img">
+        <div>
+          <img id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+        </div>
+      </section>
+    </section>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Générer</button>
+    </div>
+  </form>
+
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="/assets/script/event_saisie.js"></script>
+<script type="text/javascript">
+  affiche_photo_personne();
+</script>
+{% endblock %}

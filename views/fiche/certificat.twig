@@ -1,0 +1,52 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/profil.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/profil.css">
+{% endblock %}
+
+{% block description %}Certificat Travail{% endblock %}
+
+{% block key %}Certificat Travail{% endblock %}
+
+{% block title %} - Certificat Travail{% endblock %}
+
+{% block main %}
+
+{# Fiche Civil #}
+{% set _etat_ = {'goBack': 1} %}
+{% include "/templates/fiche_civil.twig" with _etat_ %}
+
+<section class="information_casier">
+  <h1>Certificat d'aptitude pour l'accession au métier de {{ arret.job_vise|capitalize }}</h1>
+  <img src="/assets/img/logo.png" alt="">
+  <p><strong>Nom : </strong>{{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</p>
+  <p><strong>Date de naissance : </strong>{{ civil.DOB|date("d/m/Y") }}</p>
+  <p><strong>Profession souhaité : </strong>{{ arret.job_vise|capitalize }}</p>
+  <p>Suite à votre test d'aptitude.</p>
+  <p>Nous <strong>
+    {% if arret.etat_job == 0 %}
+    refusons
+    {% else %}
+    validons
+    {% endif %}
+  </strong> votre test d'aptitude.</p>
+  <p><strong>Motif :</strong></p>
+  <p class="remarque">{{ arret.motif }}</p>
+  <p><strong>Date de passage : </strong>{{ arret.enregistrer_le|date("d/m/Y") }}</p>
+  <p><strong>Médecin : </strong><a href="/{{ _membreFaction }}/{{ ems.matricule }}">{{ ems.grade|capitalize }} {{ ems.nom|capitalize }}</a></p>
+  <div class="lien">
+    <a href="/impression/certificat-travail/{{ arret.id }}">Imprimer le certificat</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block script %}{% endblock %}

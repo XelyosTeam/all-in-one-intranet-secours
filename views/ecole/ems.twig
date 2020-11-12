@@ -1,0 +1,134 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/form.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/division_image.css">
+{% endblock %}
+
+{% block description %}Recrutement{% endblock %}
+
+{% block key %}Recrutement{% endblock %}
+
+{% block title %} - Recrutement{% endblock %}
+
+{% block main %}
+{# Ajouter un agent #}
+<section class="contenu">
+  <h1>Ajouter un {{ _BDDFaction }}</h1>
+  <form class="connexion" action="/insert/{{ _membreFaction }}" method="post">
+
+    <!-- Division des parties -->
+    <section class="div_content_photo">
+      <section class="part_add">
+        <div>
+          <label>Civil :</label>
+          <select id="personne_type" name="nom_civil" onchange="affiche_photo_personne();">
+            {% for civil in civils %}
+            <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</option>
+            {% else %}
+            <option>Tout le monde à un emploi</option>
+            {% endfor %}
+          </select>
+        </div>
+      </section>
+
+      <section class="part_img">
+        <div>
+          <img id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+        </div>
+      </section>
+    </section>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Enregistrer</button>
+    </div>
+  </form>
+</section>
+
+{# Licencier un agent #}
+<section class="contenu">
+  <h1>Licencier un {{ _BDDFaction }}</h1>
+  <form class="connexion" action="/delete/{{ _membreFaction }}" method="post">
+
+    <!-- Division des parties -->
+    <section class="div_content_photo">
+      <section class="part_add">
+        <div>
+          <label>{{ _BDDFaction }} :</label>
+          <select id="ems_type" name="nom_ems" onchange="affiche_photo_ems();">
+            {% for agent in ems %}
+            <option value="{{ agent.ems_id }}">{{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}</option>
+            {% else %}
+            <option>Tout le monde est licencié</option>
+            {% endfor %}
+          </select>
+        </div>
+      </section>
+
+      <section class="part_img">
+        <div>
+          <img id="image_ems" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+        </div>
+      </section>
+    </section>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Licencier</button>
+    </div>
+  </form>
+</section>
+
+{# Réhabiliter un agent #}
+<section class="contenu">
+  <h1>Réhabiliter un {{ _BDDFaction }}</h1>
+
+  <form class="connexion" action="/edit/rehabilitaton" method="post">
+    <!-- Division des parties -->
+    <section class="div_content_photo">
+      <section class="part_add">
+        <div>
+          <label>Nom :</label>
+          <select id="ems_type_2" name="id_ems" onchange="affiche_photo_ems_2();">
+            {% for ems in oldems %}
+              <option value="{{ ems.ems_id }}">{{ ems.nom|capitalize }} {{ ems.prenom|capitalize }}</option>
+            {% else %}
+              <option>Tous les agents sont en service</option>
+            {% endfor %}
+          </select>
+        </div>
+      </section>
+
+      <section class="part_img">
+        <div>
+          <img id="image_ems2" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+        </div>
+      </section>
+    </section>
+
+    {% if _agent.hab_1 == 2 %}
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Réhabiliter</button>
+    </div>
+    {% endif %}
+  </form>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="/assets/script/event_saisie.js"></script>
+<script type="text/javascript">
+  affiche_photo_ems();
+  affiche_photo_personne();
+  affiche_photo_ems_2();
+</script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Administration - Modification Paramètre Serveur #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/add.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/add.css">
+{% endblock %}
+
+{% block description %}Paramètre Serveur{% endblock %}
+
+{% block key %}Paramètre Serveur{% endblock %}
+
+{% block title %}Paramètre Serveur{% endblock %}
+
+{% block main %}
+<section class="contenu">
+  <form class="connexion" action="/administration/parametre-serveur/modification" method="post">
+    <h1>Section paramètre</h1>
+    <div>
+      <label for="name">Echec maximum de connexion :</label>
+      <input class="short" type="number" name="failed_connexion" placeholder="{{ fail }}"></input>
+    </div>
+
+    <div class="btn">
+      <button class="form_button" type="submit" name="button">Modifier</button>
+    </div>
+  </form>
+</section>
+{% endblock %}
+
+{% block script %}{% endblock %}

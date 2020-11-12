@@ -1,0 +1,41 @@
+/* Phone */
+@media (max-width:1001px)
+{
+  .croix, .barre
+  {
+    display: block;
+    max-width: 20%;
+    height: auto;
+    position: fixed;  /* Il ne bouge pas */
+    top: 15px;
+    right: 5px;
+    z-index: 15;
+  }
+
+  .mobile_phone
+  {
+    /* Apparence du menu */
+    background-color: #900000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+
+    /* Structure du menu */
+    grid-template-columns: repeat(2,1fr);
+    text-align: center;
+  }
+
+  .mobile_phone button
+  {
+    background-color: #900000;
+    border: none;
+    color: #fff;
+    font-size: 3em;
+  }
+
+
+}

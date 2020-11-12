@@ -1,0 +1,130 @@
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
+{# Page vierge pour les twig #}
+{% extends "_base.twig" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/profil.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/phone/profil.css">
+{% endblock %}
+
+{% block description %}Fiche {{ _BDDFaction }}{% endblock %}
+
+{% block key %}Fiche {{ _BDDFaction }}{% endblock %}
+
+{% block title %} - Fiche {{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}{% endblock %}
+
+{% block main %}
+
+{# Fiche Civil #}
+{% include "/templates/fiche_civil.twig"%}
+
+<section class="liste">
+  <h1>Intervention</h1>
+
+  {% for intervention in interventions %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>{{ intervention.nom_inter|capitalize }}</p>
+    <a href="/intervention/{{ intervention.inter_id }}">Consulter</a>
+  </div>
+  {% else %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>Aucune intervention enregistrée</p>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="liste">
+  <h1>Liste arrêt de travail</h1>
+
+  {% for arret in arrets %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>{{ arret.motif|slice(0, 20) }} ...</p>
+    <a href="/arret-travail/{{ arret.id }}">Consulter</a>
+  </div>
+  {% else %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>Aucun arrêt de travail délivré</p>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="liste">
+  <h1>Certificat Travail</h1>
+
+  {% for certificat in certificats %}
+  <div class="content">
+    <p>{{ certificat.job_vise|capitalize }}</p>
+    <p>
+      {% if certificat.etat_job == 0 %}
+      Refusé
+      {% endif %}
+
+      {% if certificat.etat_job == 1 %}
+      Validé
+      {% endif %}
+    </p>
+    <a href="/certificat-travail/{{ certificat.id }}">Consulter</a>
+  </div>
+  {% else %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>Aucun passage pour un certificat de travail</p>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="liste">
+  <h1>Certificat PPA</h1>
+
+  {% for ppa in ppas %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>
+      {% if ppa.etat_ppa == 0 %}
+      Refusé
+      {% endif %}
+
+      {% if ppa.etat_ppa == 1 %}
+      Validé
+      {% endif %}
+    </p>
+    <a href="/certificat-ppa/{{ ppa.id }}">Consulter</a>
+  </div>
+  {% else %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>Aucun passage pour le certificat d'aptitude</p>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="liste">
+  <h1>Ordonnance</h1>
+  {% for ordonnance in ordonnances %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>{{ ordonnance.enregistrer_le|date("d/m/Y") }}</p>
+    <a href="/ordonnance/{{ ordonnance.id }}">Consulter</a>
+  </div>
+  {% else %}
+  <div class="content">
+    <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
+    <p>Aucune ordonnance délivrée</p>
+  </div>
+  {% endfor %}
+</section>
+
+</section>
+{% endblock %}
+
+{% block script %}{% endblock %}
