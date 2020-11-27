@@ -137,6 +137,13 @@ function decryptHistorique($code) {
       return "Ecole : Réhabilitation " . serveurIni('Faction', 'metierBDD') . " - " . $code[3] . " => " . getEmsName($code[3]);
       break;
 
+    case '2¤3¤0':
+      return "Ecole : Candidature n°" . $code[3] . " acceptée";
+      break;
+    case '2¤3¤1':
+      return "Ecole : Candidature n°" . $code[3] . " refusée";
+      break;
+
     default:
       return "Erreur dans le décryptage de la solution";
       break;

@@ -5,6 +5,12 @@
     $civil->save();
   }
 
+  function editCandidature($id, $etat) {
+    $candid = Model::factory('Candidature')->where('id', $id)->find_one();
+    $candid->set('etat_act', $etat);
+    $candid->save();
+  }
+
   function editEMS($id, $grade, $hab1, $hab2, $hab3, $hab4, $hab5, $hab6, $hab7, $hab8, $hab9, $hab10, $hab11, $hab12, $hab13, $hab14, $hab15, $note) {
     /* Modification du grade du grade */
     $rang = Model::factory('EMS_t')->where('id', $id)->find_one();

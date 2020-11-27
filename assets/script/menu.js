@@ -91,6 +91,9 @@ function redirectionButton(id, section)
     case 21:
       document.location.href="".concat("/", section, "?ems_name=&ems_firstname=&ems_matricule=");
       break;
+    case 22:
+      document.location.href="".concat("/dossier-candidat?identifiant=");
+      break;
 
     /* Ecole */
     case 30:
