@@ -1,3 +1,11 @@
+/*
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+*/
+
 function affiche_suite(id) {
   if (document.getElementById("liste_" + id).value != "0") {
     getDescriptionMedicament(document.getElementById("liste_" + id).value, id);

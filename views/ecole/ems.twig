@@ -1,10 +1,3 @@
-{#
-  Le projet All in One est un produit Xelyos mis à disposition gratuitement
-  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
-  ne pas supprimer le ou les auteurs du projet.
-  Created by : Xelyos - Aros
-  Edited by :
-#}
 {# Page vierge pour les twig #}
 {% extends "_base.twig" %}
 
@@ -34,9 +27,9 @@
           <label>Civil :</label>
           <select id="personne_type" name="nom_civil" onchange="affiche_photo_personne();">
             {% for civil in civils %}
-            <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</option>
+              <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</option>
             {% else %}
-            <option>Tout le monde à un emploi</option>
+              <option>Tous les civils ont un travail</option>
             {% endfor %}
           </select>
         </div>
@@ -49,9 +42,12 @@
       </section>
     </section>
 
-    <div class="btn">
-      <button class="form_button" type="submit" name="button">Enregistrer</button>
-    </div>
+    {% if civils %}
+      <div class="btn">
+        <button class="form_button" type="submit" name="button">Enregistrer</button>
+      </div>
+    {% endif %}
+
   </form>
 </section>
 
@@ -67,9 +63,9 @@
           <label>{{ _BDDFaction }} :</label>
           <select id="ems_type" name="nom_ems" onchange="affiche_photo_ems();">
             {% for agent in ems %}
-            <option value="{{ agent.ems_id }}">{{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}</option>
+              <option value="{{ agent.ems_id }}">{{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}</option>
             {% else %}
-            <option>Tout le monde est licencié</option>
+              <option value="">Aucun agent enregitré</option>
             {% endfor %}
           </select>
         </div>
@@ -82,9 +78,12 @@
       </section>
     </section>
 
-    <div class="btn">
-      <button class="form_button" type="submit" name="button">Licencier</button>
-    </div>
+    {% if ems %}
+      <div class="btn">
+        <button class="form_button" type="submit" name="button">Licencier</button>
+      </div>
+    {% endif %}
+
   </form>
 </section>
 
@@ -102,7 +101,7 @@
             {% for ems in oldems %}
               <option value="{{ ems.ems_id }}">{{ ems.nom|capitalize }} {{ ems.prenom|capitalize }}</option>
             {% else %}
-              <option>Tous les agents sont en service</option>
+              <option>Aucun agent licencié</option>
             {% endfor %}
           </select>
         </div>
@@ -115,7 +114,7 @@
       </section>
     </section>
 
-    {% if _agent.hab_1 == 2 %}
+    {% if _agent.hab_1 == 2 and oldems %}
     <div class="btn">
       <button class="form_button" type="submit" name="button">Réhabiliter</button>
     </div>

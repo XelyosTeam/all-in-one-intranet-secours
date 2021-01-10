@@ -1,3 +1,11 @@
+/*
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+*/
+
 /* Phone */
 @media (max-width:1001px)
 {
@@ -7,7 +15,7 @@
     left: 3%;
     top: 47%;
     border-radius: 10px;
-    background-color: #EDEFF5;
+    background-color: var(--navBarBack);
     padding: 1% 1% 1% 1%;
   }
 
@@ -16,23 +24,22 @@
     display: block;
     padding-top: 1%;
     text-decoration: none;
-    color: #000;
+    color: var(--navBarText);
     font-size: 1.1em;
   }
 
   nav a:hover
   {
-    color: #103469;
+    color: var(--navBarHover);
   }
 
   nav p
   {
     font-weight: bold;
     text-decoration: underline;
-    color: #103469;
+    color: var(--navBarText);
     font-size: 1.2em;
   }
-
 
   .contenu
   {
@@ -41,7 +48,7 @@
     margin-left: 25%;
     margin-right: 25%;
     border-radius: 10px;
-    background-color: #EDEFF5;
+    background-color: var(--background);
   }
 
   .contenu h1
@@ -49,8 +56,8 @@
     text-align: center;
     padding-top: 1%;
     padding-bottom: 1%;
-    color: #103469;
-    border-bottom: 2px solid #103469;
+    color: var(--Text);
+    border-bottom: 2px solid var(--Text);
   }
 
   .contenu  div
@@ -64,7 +71,7 @@
     margin-left: 3%;
     text-align: left;
     font-weight: bold;
-    color: #103469;
+    color: var(--Text);
     font-size: 1.25em;
   }
 
@@ -76,8 +83,8 @@
     margin-bottom: 2%;
     width: 45%;
     height: 20%;
-    background-color: #EDEFF5;
-    color: #103469;
+    background-color: var(--background);
+    color: var(--Text);
     font-weight: bold;
     font-size: 1.5em;
   }
@@ -90,8 +97,8 @@
     margin-left: 10%;
     padding: 1%;
     width: 80%;
-    background-color: #EDEFF5;
-    color: #103469;
+    background-color: var(--background);
+    color: var(--Text);
     font-weight: bold;
     font-size: 1.5em;
   }
@@ -104,8 +111,8 @@
     margin-bottom: 2%;
     width: 45%;
     height: 20%;
-    background-color: #EDEFF5;
-    color: #103469;
+    background-color: var(--background);
+    color: var(--Text);
     font-weight: bold;
     font-size: 1.5em;
   }
@@ -127,8 +134,8 @@
     margin-bottom: 2%;
     border: none;
     border-radius: 10px;
-    background-color: #103469;
-    color: #fff;
+    background-color: var(--background);
+    color: var(--Text);
     padding: 2%;
     font-size: 1.25em;
   }
@@ -152,7 +159,7 @@
   {
     margin-left: 4%;
     margin-bottom: 2%;
-    color: #103469;
+    color: var(--Text);
     font-size: 1.2em;
   }
 

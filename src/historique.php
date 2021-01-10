@@ -1,4 +1,11 @@
 <?php
+  /*
+    Le projet All in One est un produit Xelyos mis à disposition gratuitement
+    pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+    ne pas supprimer le ou les auteurs du projet.
+    Created by : Xelyos - Aros
+    Edited by :
+  */
 
 function decryptHistorique($code) {
   $code = explode("¤", $code);
@@ -181,7 +188,7 @@ function getMedName($id) {
 }
 
 function getGrade($grade) {
-  $name = Grade::getGrade($grade)->nom;
+  $name = Grade::getGradePosition($grade)->nom;
   if ($name) {
     return $name;
   }

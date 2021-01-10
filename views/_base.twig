@@ -5,12 +5,14 @@
   Created by : Xelyos - Aros
   Edited by :
 #}
+
 {# Modèle de page#}
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="/assets/styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/color.css">
     <link rel="stylesheet" type="text/css" href="/assets/styles/global/general.css">
     <link rel="stylesheet" type="text/css" href="/assets/styles/phone/general.css">
     <link rel="stylesheet" type="text/css" href="/assets/styles/phone/menu.css">
@@ -115,8 +117,9 @@
         <button id="2" type="button" onclick="afficheSousMenu(2)">Ecole</button>
 
         <button id="20" type="button" onclick="redirectionButton(20, 0)">Recrutement</button>
+        <button id="22" type="button" onclick="redirectionButton(22, 0)">Dossier Candidat</button>
         <button id="21" type="button" onclick="redirectionButton(21, '{{ _membreFaction }}')">Gestion {{ _BDDFaction }}</button>
-        <button id="22" type="button" onclick="maskSousMenu()">Retour</button>
+        <button id="23" type="button" onclick="maskSousMenu()">Retour</button>
 
         {# Info #}
         <button id="3" type="button" onclick="afficheSousMenu(3)">Info</button>

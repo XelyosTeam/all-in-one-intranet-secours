@@ -1,4 +1,11 @@
 <?php
+  /*
+    Le projet All in One est un produit Xelyos mis à disposition gratuitement
+    pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+    ne pas supprimer le ou les auteurs du projet.
+    Created by : Xelyos - Aros
+    Edited by :
+  */
   function editCivil($id_civil, $sang, $donneur) {
     $civil = Model::factory('Personne')->where('id', $id_civil)->find_one();
     $civil->set(array('grp_sanguin' => $sang, 'donneur' => $donneur));
@@ -50,15 +57,15 @@
 
   function editLicenciement($id) {
     /* Bloquage et suppression du grade */
-    $bye2 = Model::factory('EMS_t')->where('id', $id)->find_one();
-    $bye2->set('rang', 1);
-    $bye2->save();
+    $bye = Model::factory('EMS_t')->where('id', $id)->find_one();
+    $bye->set('rang', 1);
+    $bye->save();
 
     /* Déclaration de l'individu comme sans emploi */
-    $id_civil = Agent::getInfoAgentIDUser($id);
-    $bye3 = Model::factory('Personne')->where('id', $id_civil->user_id)->find_one();
-    $bye3->set('job', serveurIni('Par_defaut', 'emploi'));
-    $bye3->save();
+    $id_civil = Agent::getInfoAgentIdEms($id);
+    $bye2 = Model::factory('Personne')->where('id', $id_civil->user_id)->find_one();
+    $bye2->set('job', serveurIni('Par_defaut', 'emploi'));
+    $bye2->save();
   }
 
   function mise_a_jour_mdp($matricule, $new_mdp_hashed, $salt) {

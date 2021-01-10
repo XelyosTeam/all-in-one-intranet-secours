@@ -5,6 +5,7 @@
   Created by : Xelyos - Aros
   Edited by :
 #}
+
 {# Page vierge pour les twig #}
 {% extends "_base.twig" %}
 
@@ -30,11 +31,14 @@
     <section class="div_content_photo">
       <section class="part_add">
         <div>
-          <label>Citoyen* :</label>
-
+          <label>Citoyen :</label>
+          {% set __arret = true %}
           <select id="personne_type" name="id_civil" onchange="affiche_photo_personne();">
             {% for civil in civils %}
-            <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{civil.prenom|capitalize }}</option>
+              <option value="{{ civil.id }}">{{ civil.nom|capitalize }} {{civil.prenom|capitalize }}</option>
+            {% else %}
+                {% set __arret = false %}
+                <option>Aucun civil disponible</option>
             {% endfor %}
           </select>
         </div>
@@ -57,9 +61,12 @@
       </section>
     </section>
 
-    <div class="btn">
-      <button class="form_button" type="submit" name="button">Générer</button>
-    </div>
+    {% if __arret %}
+      <div class="btn">
+        <button class="form_button" type="submit" name="button">Générer</button>
+      </div>
+    {% endif %}
+
   </form>
 
 </section>

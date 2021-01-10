@@ -1,17 +1,25 @@
+/*
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+*/
+
 /* PC */
 .red
 {
-  color: #DA0000;
+  color: var(--nonHabilite);
 }
 
 .orange
 {
-  color: #E09E08;
+  color: var(--inFormation);
 }
 
 .green
 {
-  color: #00850B;
+  color: var(--Habilite);
 }
 
 .info_personne
@@ -21,7 +29,7 @@
   margin-left: 10%;
   width: 25%;
   border-radius: 10px;
-  background-color: #EDEFF5;
+  background-color: var(--background);
   text-align: center;
   padding-bottom: 2%;
 }
@@ -35,7 +43,7 @@
 .info_personne .description
 {
   text-align: center;
-  color: #b0b0b0;
+  color: var(--profilDescription);
   font-style: italic;
   margin-left: 1%;
   margin-right: 1%;
@@ -45,14 +53,14 @@
 {
   padding-top: 2%;
   padding-bottom: 1%;
-  color: #900000;
-  border-bottom: 2px solid #900000;
+  color: var(--Text);
+  border-bottom: 2px solid var(--Text);
 }
 
 .info_personne p strong
 {
   text-align: left;
-  color: #900000;
+  color: var(--Text);
   font-size: 1.25em;
   margin-right: 3%;
 }
@@ -74,15 +82,15 @@
 {
   border: none;
   border-radius: 10px;
-  background-color: #900000;
-  color: #EDEFF5;
+  background-color: var(--Text);
+  color: var(--background);
   padding: 1%;
   font-size: 1.25em;
 }
 
 .info_personne .lien a:hover, .btn_modif button:hover, .information_casier .lien a:hover, .information_medicament .lien a:hover
 {
-  color: #000000;
+  color: var(--navBarHover);
 }
 
 .btn_modif, .information_casier .lien, .information_medicament .lien
@@ -97,7 +105,7 @@
   margin-left: 37%;
   width: 58%;
   border-radius: 10px;
-  background-color: #EDEFF5;
+  background-color: var(--background);
   text-align: center;
   padding-bottom: 2%;
 }
@@ -106,8 +114,8 @@
 {
   padding-top: 2%;
   padding-bottom: 1%;
-  color: #900000;
-  border-bottom: 2px solid #900000;
+  color: var(--Text);
+  border-bottom: 2px solid var(--Text);
 }
 
 .habilitation p
@@ -138,14 +146,14 @@
   margin-left: 37%;
   width: 58%;
   border-radius: 10px;
-  background-color: #EDEFF5;
+  background-color: var(--background);
   padding-bottom: 0.5%;
 }
 
 .liste p strong
 {
   text-align: left;
-  color: #900000;
+  color:  var(--Text);
   font-size: 1.25em;
   margin-right: 3%;
 }
@@ -155,21 +163,21 @@
   margin-left: 90%;
   font-weight: bold;
   font-size: 1.2em;
-  background: #900000;
-  color: #EDEFF5;
+  background: var(--Bouton);
+  color: var(--BoutonText);
   padding: 1%
 }
 
 .liste .ferm:hover
 {
-  color: #000000;
+  color: var(--BoutonTextHover);
 }
 
 .liste h1
 {
   padding-top: 2%;
-  color: #900000;
-  border-bottom: 2px solid #900000;
+  color: var(--Text);
+  border-bottom: 2px solid var(--Text);
   text-align: center;
 }
 
@@ -178,7 +186,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2%;
-  border-bottom: 0.5px solid #900000;
+  border-bottom: 0.5px solid var(--Text);
 }
 
 .liste .content img
@@ -206,14 +214,14 @@
   height: auto;
   padding-top: 10%;
   text-decoration: none;
-  color: #900000;
+  color: var(--Text);
   font-weight: bold;
   font-size: 1.5em;
 }
 
 .liste .content a:hover
 {
-  color: #000000;
+  color: var(--BoutonTextHover);
   font-size: 2em;
   margin-top: -0.25em;
 }
@@ -225,22 +233,22 @@
   margin-left: 37%;
   width: 58%;
   border-radius: 10px;
-  background-color: #EDEFF5;
+  background-color: var(--background);
   padding-bottom: 0.5%;
 }
 
 .information_casier h1, .information_medicament h1
 {
   padding-top: 2%;
-  color: #900000;
-  border-bottom: 2px solid #900000;
+  color: var(--Text);
+  border-bottom: 2px solid var(--Text);
   text-align: center;
 }
 
 .information_casier p strong, .information_medicament p strong
 {
   text-align: left;
-  color: #900000;
+  color: var(--Text);
   font-size: 1.25em;
   margin-right: 1%;
 }
@@ -285,7 +293,7 @@
 .information_medicament thead tr
 {
   font-weight: bold;
-  color: #900000;
+  color: var(--Text);
 }
 
 .information_medicament tbody tr .desc

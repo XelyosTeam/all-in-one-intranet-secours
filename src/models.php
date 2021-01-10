@@ -1,4 +1,11 @@
 <?php
+  /*
+    Le projet All in One est un produit Xelyos mis à disposition gratuitement
+    pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+    ne pas supprimer le ou les auteurs du projet.
+    Created by : Xelyos - Aros
+    Edited by :
+  */
   use Josantonius\Session\Session; // Pour utiliser les variables de sessions
 
   class Agent extends Model {
@@ -11,8 +18,11 @@
     public static function getInfoAgentMatricule($matricule) { // Informations d'un agent de police avec le matricule
       return Agent::where('matricule', $matricule)->find_one();
     }
-    public static function getInfoAgentIDUser($id) { // Informations d'un agent de police avec l'ID
+    public static function getInfoAgentIdEms($id) { // Informations d'un agent de police avec l'ID
       return Agent::where('ems_id', $id)->find_one();
+    }
+    public static function getInfoAgentIDUser($id) { // Informations d'un agent de police avec l'ID
+      return Agent::where('user_id', $id)->find_one();
     }
     public static function getListAgent() {
       return Agent::where_not_equal('grade_id', 1)
@@ -126,6 +136,10 @@
     }
     public static function getGrade($id) {
       return Grade::where('id', $id)->find_one();
+    }
+    public static function getGradePosition($pos) {
+      return Grade::where('position', $pos)
+        ->find_one();
     }
   }
 
@@ -334,8 +348,8 @@
                      ->order_by_asc(array('nom', 'prenom'))
                      ->find_many();
     }
-    public static function OldEMS() {
-      return Personne::raw_query('SELECT * FROM personnes WHERE id NOT IN (SELECT user_id FROM info_ems) AND id <> :lspd_id AND job = :job  ORDER BY nom, prenom;', array('lspd_id' => serveurIni('Par_defaut', 'id_ems'), 'job' => serveurIni('Par_defaut', 'emploi')))
+    public static function OldEms() {
+      return Personne::raw_query('SELECT * FROM personnes WHERE id NOT IN (SELECT user_id FROM info_ems) AND id <> :ems_id AND job = :job  ORDER BY nom, prenom;', array('ems_id' => serveurIni('Par_defaut', 'id_ems'), 'job' => serveurIni('Par_defaut', 'emploi')))
                      ->find_many();
     }
   }

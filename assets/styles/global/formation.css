@@ -1,10 +1,18 @@
+/*
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+*/
+
 nav
 {
   position: fixed;
   left: 3%;
   top: 47%;
   border-radius: 10px;
-  background-color: #EDEFF5;
+  background-color: var(--background);
   padding: 1% 1% 1% 1%;
 }
 
@@ -19,17 +27,16 @@ nav a
 
 nav a:hover
 {
-  color: #900000;
+  color: var(--Text);
 }
 
 nav p
 {
   font-weight: bold;
   text-decoration: underline;
-  color: #900000;
+  color: var(--Text);
   font-size: 1.2em;
 }
-
 
 .contenu
 {
@@ -38,19 +45,7 @@ nav p
   margin-left: 25%;
   margin-right: 15%;
   border-radius: 10px;
-  background-color: #EDEFF5;
-  text-align: center;
-}
-
-
-.contenu
-{
-  display: block;
-  margin-top: 2%;
-  margin-left: 20%;
-  margin-right: 20%;
-  border-radius: 10px;
-  background-color: #EDEFF5;
+  background-color: var(--background);
   text-align: center;
 }
 
@@ -58,7 +53,7 @@ nav p
 {
   padding-top: 1%;
   padding-left: 2%;
-  color: #900000;
+  color: var(--Text);
 }
 
 .contenu h2
@@ -66,7 +61,7 @@ nav p
   text-align: left;
   padding-top: 1%;
   padding-left: 2%;
-  color: #900000;
+  color: var(--Text);
   text-decoration: underline;
 }
 
@@ -95,6 +90,6 @@ nav p
 
 .contenu a:hover
 {
-  color: #900000;
+  color: var(--Text);
   text-decoration: underline;
 }

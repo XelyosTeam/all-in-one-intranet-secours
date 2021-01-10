@@ -1,10 +1,3 @@
-{#
-  Le projet All in One est un produit Xelyos mis à disposition gratuitement
-  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
-  ne pas supprimer le ou les auteurs du projet.
-  Created by : Xelyos - Aros
-  Edited by :
-#}
 {# Page vierge pour les twig #}
 {% extends "_base.twig" %}
 
@@ -25,14 +18,17 @@
 
   <form class="connexion" action="/edit/mdp/admin" method="post">
     <div>
-      <label>Nom de la personne :</label>
+      <label>Sélectionner la personne :</label>
       <select name="nom">
         {% for agent in ems %}
-        <option value="{{ agent.ems_id }}">{{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}</option>
+          <option value="{{ agent.ems_id }}">{{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}</option>
+        {% else %}
+          <option>Liste vide</option>
         {% endfor %}
       </select>
     </div>
 
+    {% if ems %}
     <div>
       <label for="mdp">Nouveau Mot de passe</label>
       <input type="text" name="mdp" id="mdp" placeholder="Nouveau mot de passe" required>
@@ -41,6 +37,9 @@
     <div class="btn">
       <button class="form_button" type="submit" name="button">Modifier</button>
     </div>
+    {% endif %}
+
+
   </form>
 </section>
 
@@ -59,9 +58,11 @@
       </select>
     </div>
 
-    <div class="btn">
-      <button class="form_button" type="submit" name="button">Détail</button>
-    </div>
+    {% if echecs %}
+      <div class="btn">
+        <button class="form_button" type="submit" name="button">Détail</button>
+      </div>
+    {% endif %}
   </form>
 </section>
 
@@ -74,27 +75,27 @@
       <label>Nom médicament :</label>
       <select id="med_id" onchange="changeDescriptionMedicament();">
         {% for medicament in medicaments %}
-        <option value="{{ medicament.id }}">{{ medicament.nom|capitalize }}</option>
+          <option value="{{ medicament.id }}">{{ medicament.nom|capitalize }}</option>
         {% else %}
-        <option value="0">Aucun médicament enregistré</option>
+          <option value="0">Aucun médicament enregistré</option>
         {% endfor %}
       </select>
     </div>
 
     {% if medicaments %}
-    <div>
-      <label for="mdp">Nouvelle description</label>
-      <textarea name="med_descript" id="med_descript" placeholder="Entrer la description rapide du médicament"></textarea>
-    </div>
+      <div>
+        <label for="mdp">Nouvelle description</label>
+        <textarea name="med_descript" id="med_descript" placeholder="Entrer la description rapide du médicament"></textarea>
+      </div>
+
+      <div>
+        <p id="confirm_med">Description modifiée</p>
+      </div>
+
+      <div class="btn">
+        <button class="form_button" type="submit" name="button" onclick="editDescriptionMed();">Modifier</button>
+      </div>
     {% endif %}
-
-    <div>
-      <p id="confirm_med">Description modifiée</p>
-    </div>
-
-    <div class="btn">
-      <button class="form_button" type="submit" name="button" onclick="editDescriptionMed();">Modifier</button>
-    </div>
   </form>
 </section>
 {% endblock %}

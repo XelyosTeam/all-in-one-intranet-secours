@@ -1,10 +1,3 @@
-{#
-  Le projet All in One est un produit Xelyos mis à disposition gratuitement
-  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
-  ne pas supprimer le ou les auteurs du projet.
-  Created by : Xelyos - Aros
-  Edited by :
-#}
 {# Modèle de page #}
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -47,7 +40,7 @@
     <h1>Arrêt de travail n°{{ civil.id }}</h1>
     {% include "/templates/impression_civil.twig"%}
 
-    <h2>Information médecin</h2>
+    <h2>Information {{ _membreFaction }}</h2>
     <p><strong>Identifiant :</strong> {{ ems.matricule }}</p>
     <p><strong>Nom :</strong> {{ ems.nom|capitalize }} {{ ems.prenom|capitalize }}</p>
 

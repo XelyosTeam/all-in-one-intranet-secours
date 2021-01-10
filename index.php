@@ -1,8 +1,14 @@
 <?php
+  /*
+    Le projet All in One est un produit Xelyos mis à disposition gratuitement
+    pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+    ne pas supprimer le ou les auteurs du projet.
+    Created by : Xelyos - Aros
+    Edited by :
+  */
   require "vendor/autoload.php";
 
   /* Initialisation des variables de sessions */
-  require __DIR__ . '/vendor/autoload.php';
   use Josantonius\Session\Session;
 
   Session::init();
@@ -32,6 +38,7 @@
       $twig->addGlobal('_jeuServeur', serveurIni('Serveur', 'jeu'));
       $twig->addGlobal('_Version', serveurIni('Serveur', 'version'));
       $twig->addGlobal('_CopServeur', serveurIni('Serveur', 'url_cop'));
+      $twig->addGlobal('_Serveur', serveurIni('Serveur', 'url'));
       // Habilitation
       $twig->addGlobal('_Hab1', serveurIni('HABILITATION', 'hab_1'));
       $twig->addGlobal('_Hab2', serveurIni('HABILITATION', 'hab_2'));
@@ -78,6 +85,23 @@
     verif_connecter();
 
     Flight::view()->display('tchat.twig');
+  });
+
+  Flight::route('/chat', function()
+  {
+    verif_connecter();
+    /* On doit analyser la demande faite via l'URL (GET) afin de déterminer si on souhaite récupérer les messages ou en écrire un  */
+    $task = "list";
+
+    if(array_key_exists("task", $_GET)) {
+      $task = $_GET['task'];
+    }
+
+    if($task == "write") {
+      postMessage();
+    } else {
+      getMessages();
+    }
   });
 
   Flight::route('/dossier-candidat', function()
@@ -136,33 +160,6 @@
         break;
     }
     Flight::redirect("/dossier-candidat?identifiant=");
-  });
-
-  Flight::route('/chat', function()
-  {
-    verif_connecter();
-    /* On doit analyser la demande faite via l'URL (GET) afin de déterminer si on souhaite récupérer les messages ou en écrire un  */
-    $task = "list";
-
-    if(array_key_exists("task", $_GET)) {
-      $task = $_GET['task'];
-    }
-
-    if($task == "write") {
-      postMessage();
-    } else {
-      getMessages();
-    }
-  });
-
-  Flight::route('/', function()
-  {
-    verif_connecter();
-    $agent = Agent::getInfoAgent();
-    Flight::view()->display('fiche/ems.twig', array(
-      'agent' => $agent,
-      'voitures' => Voiture::getListCarEMS($agent->user_id)
-    ));
   });
 
   Flight::route('/administration/ajout', function()
@@ -239,6 +236,7 @@
 
   Flight::route('/administration/historique/get_info', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
     verif_admin();
 
@@ -269,10 +267,17 @@
       else {
         $i = 0;
         foreach ($liste as $key => $action) {
+
+          try {
+            $event = decryptHistorique($action->contenu);
+          } catch (\Exception $e) {
+            $event = $action->contenu;
+          }
+
           $data[$key] = [
             'id' => $action->id,
             'date' => $action->date_even,
-            'event' => decryptHistorique($action->contenu)
+            'event' => $event
           ];
           $i++;
         }
@@ -286,6 +291,7 @@
 
   Flight::route('/administration/historique_connexion/get_info', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
     verif_admin();
 
@@ -333,6 +339,7 @@
 
   Flight::route('/administration/historique/get_stats', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
     verif_admin();
 
@@ -374,7 +381,7 @@
     Flight::view()->display('fiche/arret.twig', array(
       'civil' => Personne::getinfoPersonne($arret->personne),
       'arret' => $arret,
-      'ems' => Agent::getInfoAgentIDUser($arret->enregistrer_par)
+      'ems' => Agent::getInfoAgentIdEms($arret->enregistrer_par)
     ));
   });
 
@@ -395,7 +402,7 @@
     Flight::view()->display('fiche/ppa.twig', array(
       'civil' => Personne::getinfoPersonne($ppa->personne),
       'ppa' => $ppa,
-      'ems' => Agent::getInfoAgentIDUser($ppa->enregistrer_par)
+      'ems' => Agent::getInfoAgentIdEms($ppa->enregistrer_par)
     ));
   });
 
@@ -416,7 +423,7 @@
     Flight::view()->display('fiche/certificat.twig', array(
       'civil' => Personne::getinfoPersonne($certificat->personne),
       'arret' => $certificat,
-      'ems' => Agent::getInfoAgentIDUser($certificat->enregistrer_par)
+      'ems' => Agent::getInfoAgentIdEms($certificat->enregistrer_par)
     ));
   });
 
@@ -491,6 +498,7 @@
 
   Flight::route('/connect', function()
   {
+    header("Access-Control-Allow-Origin: *");
     /* Variable de POST */
     $matricule = $_POST['user_matricule'];
     $mdp = $_POST['user_mdp'];
@@ -755,7 +763,7 @@
     Flight::view()->display('fiche/intervention.twig', array(
       'civil' => Personne::getinfoPersonne($intervention->id_civil),
       'intervention' => $intervention,
-      'ems' => Agent::getInfoAgentIDUser($intervention->enregistre_par)
+      'ems' => Agent::getInfoAgentIdEms($intervention->enregistre_par)
     ));
   });
 
@@ -776,7 +784,7 @@
     verif_connecter();
     verif_enseignant();
     Flight::view()->display('ecole/ems.twig', array(
-      'civils' => Personne::OldEMS(),
+      'civils' => Personne::OldEms(),
       'ems' => Agent::getListAgent(),
       'oldems' => Agent::getListOldAgent()
     ));
@@ -784,11 +792,12 @@
 
   Flight::route('/recherche/photo/ems', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
     $id = $_POST["id"];
 
     // Récupération de l'info image véhicule
-    $info = Agent::getInfoAgentIDUser($id);
+    $info = Agent::getInfoAgentIdEms($id);
     $data = [
       'grade' => $info->grade,
       'nom' => $info->nom,
@@ -800,6 +809,7 @@
 
   Flight::route('/recherche/photo/personne', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
     $id = $_POST["id"];
 
@@ -943,7 +953,7 @@
 
     $agent = Agent::getInfoAgent();
     updateProf($id_ems);
-    addHistorique($agent->matricule, "0¤3¤0¤". Agent::getInfoAgentIDUser($id_ems)->matricule);
+    addHistorique($agent->matricule, "0¤3¤0¤". Agent::getInfoAgentIdEms($id_ems)->matricule);
     Flight::redirect("/administration/ajout");
   });
 
@@ -960,7 +970,7 @@
       Flight::redirect("/recrutement");
     }
     else {
-      $info = Agent::getInfoAgentIDUser($ems);
+      $info = Agent::getInfoAgentIdEms($ems);
       editLicenciement($info->ems_id);
       addHistorique($agent->matricule, "2¤2¤1¤$info->matricule");
       Flight::redirect("/" . serveurIni('Faction', 'membre') . "/$info->matricule"); // Redirection vers la page de l'agent
@@ -991,7 +1001,7 @@
     $salt = bin2hex(random_bytes(15)); // On génère un nouveau salt
     $new_mdp_hashed = program_crypt($new_mdp, $salt);
 
-    $agent = Agent::getInfoAgentIDUser($id_ems);
+    $agent = Agent::getInfoAgentIdEms($id_ems);
     mise_a_jour_mdp($agent->matricule, $new_mdp_hashed, $salt);
 
     $op = Agent::getInfoAgent();
@@ -1012,7 +1022,7 @@
     }
     else {
       editEms($id_ems, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "");
-      $old = Agent::getInfoAgentIDUser($id_ems);
+      $old = Agent::getInfoAgentIdEms($id_ems);
 
       addHistorique($agent->matricule, "2¤2¤2¤$old->matricule");
       Flight::redirect("/" . serveurIni('Faction', 'membre') . "/$old->matricule");
@@ -1031,7 +1041,7 @@
 
     Flight::view()->display('fiche/ordonnance.twig', array(
       'civil' => Personne::getinfoPersonne($ordonnance->patient),
-      'ems' => Agent::getInfoAgentIDUser($ordonnance->enregistrer_par),
+      'ems' => Agent::getInfoAgentIdEms($ordonnance->enregistrer_par),
       'medicaments' => Info_Ordonnance::getList($n_ordonnance),
       'ordonnance' => Ordonnance::getInfo($n_ordonnance)
     ));
@@ -1049,6 +1059,7 @@
 
   Flight::route('/medicament/get_info', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
     verif_admin();
 
@@ -1061,6 +1072,7 @@
 
   Flight::route('/medicament/get_list', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
     verif_admin();
 
@@ -1078,6 +1090,7 @@
 
   Flight::route('/medicament/add/ordonnance', function()
   {
+    header("Access-Control-Allow-Origin: *");
     verif_connecter();
 
     $id = $_POST['personne_type'];

@@ -1,4 +1,11 @@
 <?php
+  /*
+    Le projet All in One est un produit Xelyos mis à disposition gratuitement
+    pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+    ne pas supprimer le ou les auteurs du projet.
+    Created by : Xelyos - Aros
+    Edited by :
+  */
 // Include Dompdf required namespaces
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -49,7 +56,7 @@ class generatePDF {
     Flight::view()->display('impression/info_inter.twig', array(
       'civil' => Personne::getinfoPersonne($intervention->id_civil),
       'intervention' => $intervention,
-      'ems' => Agent::getInfoAgentIDUser($intervention->enregistre_par),
+      'ems' => Agent::getInfoAgentIdEms($intervention->enregistre_par),
       'img' => $this->encodeIMG()
     ));
     $this->html = ob_get_clean();
@@ -63,7 +70,7 @@ class generatePDF {
     Flight::view()->display('impression/info_arret.twig', array(
       'arret' => $arret,
       'civil' => Personne::getinfoPersonne($arret->personne),
-      'ems' => Agent::getInfoAgentIDUser($arret->enregistrer_par),
+      'ems' => Agent::getInfoAgentIdEms($arret->enregistrer_par),
       'img' => $this->encodeIMG()
     ));
     $this->html = ob_get_clean();
@@ -78,7 +85,7 @@ class generatePDF {
     Flight::view()->display('impression/info_travail.twig', array(
       'civil' => $personne,
       'certif' => $certificat,
-      'ems' => Agent::getInfoAgentIDUser($certificat->enregistrer_par),
+      'ems' => Agent::getInfoAgentIdEms($certificat->enregistrer_par),
       'img' => $this->encodeIMG()
     ));
     $this->html = ob_get_clean();
@@ -93,7 +100,7 @@ class generatePDF {
     Flight::view()->display('impression/info_ppa.twig', array(
       'civil' => $personne,
       'ppa' => $ppa,
-      'ems' => Agent::getInfoAgentIDUser($ppa->enregistrer_par),
+      'ems' => Agent::getInfoAgentIdEms($ppa->enregistrer_par),
       'img' => $this->encodeIMG()
     ));
     $this->html = ob_get_clean();
@@ -107,7 +114,7 @@ class generatePDF {
     ob_start();
     Flight::view()->display('impression/info_ordonnance.twig', array(
       'civil' => $personne,
-      'ems' => Agent::getInfoAgentIDUser($ordonnance->enregistrer_par),
+      'ems' => Agent::getInfoAgentIdEms($ordonnance->enregistrer_par),
       'medicaments' => Info_Ordonnance::getList($ordonnance->id),
       'ordonnance' => Ordonnance::getInfo($ordonnance->id),
       'img' => $this->encodeIMG()
