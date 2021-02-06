@@ -39,7 +39,7 @@
 
       <section class="part_img">
         <div>
-          <img id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+          <img class="round_profil" id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
         </div>
       </section>
     </section>
@@ -108,6 +108,7 @@
 <script src="/assets/script/ordonnance.js"></script>
 <script src="/assets/script/event_saisie.js"></script>
 <script type="text/javascript">
+  affiche_photo_personne();
   initialisationContent(1);
 </script>
 {% endblock %}

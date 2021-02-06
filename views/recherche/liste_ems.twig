@@ -22,7 +22,7 @@
 
   {% for agent in agents %}
   <div class="Resultat">
-    <img src="http://{{ _CopServeur }}/assets/img/identité/{{ agent.photo}}" alt="Photo de {{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}">
+    <img class="round_profil" src="http://{{ _CopServeur }}/assets/img/identité/{{ agent.photo}}" alt="Photo de {{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}">
     <p>{{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}</p>
     <a href="/{{ _membreFaction }}/{{ agent.matricule }}">Consulter</a>
   </div>
