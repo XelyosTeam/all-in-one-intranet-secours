@@ -23,6 +23,7 @@
       'debug' => true,
   );
 
+  /* Version 2.1.1 */
   Flight::register('view', '\Twig\Environment', array($loader, $twigConfig), function ($twig) {
       $twig->addExtension(new \Twig\Extension\DebugExtension()); // Add the debug extension
       $twig->addGlobal('_agent', Agent::getInfoAgent());
@@ -122,6 +123,7 @@
 
     if ($identifiant != NULL) {
       $personne = Candidature::getCandidature($identifiant);
+      $personne->motivation_lspd = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($personne->motivation_lspd)));
       $ecole = explode('-', $personne->detail_ecole);
       $vacance = explode('-', $personne->detail_vacance);
       $travail = explode('-', $personne->detail_travail);
@@ -377,6 +379,7 @@
   {
     verif_connecter();
     $arret = Arret::getArret($id_arret);
+        $arret->motif = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($arret->motif)));
 
     Flight::view()->display('fiche/arret.twig', array(
       'civil' => Personne::getinfoPersonne($arret->personne),
@@ -398,6 +401,7 @@
   {
     verif_connecter();
     $ppa = PPA::getCertificat($id_ppa);
+    $ppa->rapport = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($ppa->rapport)));
 
     Flight::view()->display('fiche/ppa.twig', array(
       'civil' => Personne::getinfoPersonne($ppa->personne),
@@ -419,6 +423,7 @@
   {
     verif_connecter();
     $certificat = Certificat::getCertificat($id_certificat);
+    $certificat->motif = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($certificat->motif)));
 
     Flight::view()->display('fiche/certificat.twig', array(
       'civil' => Personne::getinfoPersonne($certificat->personne),
@@ -759,6 +764,7 @@
   {
     verif_connecter();
     $intervention = Intervention::getIntervention($id_intervention);
+    $intervention->rapport = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($intervention->rapport)));
 
     Flight::view()->display('fiche/intervention.twig', array(
       'civil' => Personne::getinfoPersonne($intervention->id_civil),

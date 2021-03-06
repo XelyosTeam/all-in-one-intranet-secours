@@ -3,6 +3,7 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="/assets/styles/global/candid.css">
+<link rel="stylesheet" type="text/css" href="/assets/styles/global/markdown.css">
 {% endblock %}
 
 {% block description %}Candidature {{ _nomFaction }}{% endblock %}
@@ -205,7 +206,10 @@
     </div>
 
     <div>
-      <p><strong>Motivations :</strong>{{ personne.motivation_lspd }}</p>
+      <p><strong>Motivations :</strong></p>
+      <div class="markdown-body">
+        {{ personne.motivation_lspd|raw }}
+      </div>
     </div>
   </section>
 

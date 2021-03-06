@@ -7,6 +7,7 @@
     Edited by :
   */
   use Josantonius\Session\Session;
+  use Michelf\Markdown; // Utiliser pour la translation markdown html
 
   function deleteIP($ip) {
     $adresse = Model::factory('Historique')->where_equal(array('adresse_ip' => $ip, 'etat' => 'Echec'))->delete_many();
@@ -70,5 +71,9 @@
     // 3. Donner un statut de succes ou d'erreur au format JSON
     echo json_encode(["status" => "success"]);
     Flight::redirect("/discussion-interne");
+  }
+
+  function renderHTMLFromMarkdown($string_markdown_formatted) {
+    return Markdown::defaultTransform($string_markdown_formatted);
   }
 ?>
