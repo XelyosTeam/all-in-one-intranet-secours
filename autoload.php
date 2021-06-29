@@ -1,6 +1,6 @@
 <?php
 /* Utilisation de la base de données */
-include 'src/models.php';
+include 'entity/models.php';
 
 /* Fonction de cryptage des mots de passe */
 include 'src/cryptage.php';
