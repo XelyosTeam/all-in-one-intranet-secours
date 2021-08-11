@@ -45,7 +45,7 @@ Flight::route('/administration/modification', function() {
 
 Flight::route('/administration/parametre-serveur', function() {
   verif_connecter();
-  verif_admin();
+  verif_admin(); // Vérifie si l'utilisateur fait partie des administrateurs
 
   Flight::view()->display('administration/server_param.twig', array(
     'fail' => serveurIni('Parametre', 'echec_maximum')
@@ -54,13 +54,17 @@ Flight::route('/administration/parametre-serveur', function() {
 
 Flight::route('/administration/parametre-serveur/modification', function() {
   verif_connecter();
-  verif_admin();
+  verif_admin(); // Vérifie si l'utilisateur fait partie des administrateurs
 
   if ($_POST['failed_connexion'] != '') {
     editserveurIni('Parametre', 'echec_maximum', $_POST['failed_connexion']);
     addHistorique(Session::get('matricule_ems'), "0¤0¤0¤" . $_POST['failed_connexion']);
   }
 
+  if ($_POST['etat_recrut'] != '') {
+    editserveurIni('Faction', 'etatRecrutement', $_POST['etat_recrut']);
+    addHistorique(Session::get('matricule_ems'), "0¤0¤1¤" . $_POST['etat_recrut']);
+  }
   Flight::redirect("/administration/parametre-serveur");
 });
 
@@ -209,7 +213,6 @@ Flight::route('/delete/@adress_ip', function($adresse_ip) {
   deleteIP($adresse_ip);
   $op = Agent::getInfoAgent();
   addHistorique($op->matricule, "0¤1¤1¤$adresse_ip");
-  Flight::redirect("/administration/modification");
+  Flight::redirect("/administration/modification"); // Redirige vers la page
 });
-
 ?>

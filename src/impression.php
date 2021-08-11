@@ -14,12 +14,20 @@ class generatePDF {
 
   private $html = "<h1>Null</h1>";
   private $nomDossier = null;
+  private $impression_left = "left.png";
+  private $impression_centre = "centre.png";
+  private $impression_right = "right.png";
 
-  private function encodeIMG() {
-    $path = "http://" . serveurIni('Serveur', 'url') . "/assets/img/impression.png";
-    $type = pathinfo($path, PATHINFO_EXTENSION);
-    $data = file_get_contents($path);
-    return 'data:image/' . $type . ';base64,' . base64_encode($data);
+  private function encodeIMG($name) {
+    if ($name) {
+      $path = "http://" . serveurIni('Serveur', 'url') . "/assets/img/impression/$name";
+      $type = pathinfo($path, PATHINFO_EXTENSION);
+      $data = file_get_contents($path);
+      return 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }
+    else {
+      return null;
+    }
   }
 
   private function general() {
@@ -38,43 +46,51 @@ class generatePDF {
   }
 
   public function civil($civil) {
-    // Retrieve the HTML generated in our twig file
     ob_start();
     Flight::view()->display('impression/fiche.twig', array(
       'civil' => $civil,
+      'ems' => Agent::getInfoAgent(),
       'interventions' => Intervention::getListIntervention($civil->id),
-      'img' => $this->encodeIMG()
+      'impression_right' => $this->encodeIMG($this->impression_right),
+      'impression_left' => $this->encodeIMG($this->impression_left),
+      'impression_centre' => $this->encodeIMG($this->impression_centre),
     ));
     $this->html = ob_get_clean();
-    $this->nomDossier = "Dossier Médicale " . $civil->nom . " " . $civil->prenom . ".pdf";
+    $this->nomDossier = "Dossier Médical " . $civil->nom . " " . $civil->prenom . ".pdf";
 
     $this->general();
   }
 
   public function intervention($intervention) {
+    $civil = Personne::getinfoPersonne($intervention->id_civil);
     ob_start();
     Flight::view()->display('impression/info_inter.twig', array(
-      'civil' => Personne::getinfoPersonne($intervention->id_civil),
+      'civil' => $civil,
       'intervention' => $intervention,
       'ems' => Agent::getInfoAgentIdEms($intervention->enregistre_par),
-      'img' => $this->encodeIMG()
+      'impression_right' => $this->encodeIMG($this->impression_right),
+      'impression_left' => $this->encodeIMG($this->impression_left),
+      'impression_centre' => $this->encodeIMG($this->impression_centre),
     ));
     $this->html = ob_get_clean();
-    $this->nomDossier = "Intervention n° " . $intervention->inter_id . ".pdf";
+    $this->nomDossier = "Intervention " . $civil->nom . " " . $civil->prenom . ".pdf";
 
     $this->general();
   }
 
   public function arret($arret) {
+    $civil = Personne::getinfoPersonne($arret->personne);
     ob_start();
     Flight::view()->display('impression/info_arret.twig', array(
       'arret' => $arret,
-      'civil' => Personne::getinfoPersonne($arret->personne),
+      'civil' => $civil,
       'ems' => Agent::getInfoAgentIdEms($arret->enregistrer_par),
-      'img' => $this->encodeIMG()
+      'impression_right' => $this->encodeIMG($this->impression_right),
+      'impression_left' => $this->encodeIMG($this->impression_left),
+      'impression_centre' => $this->encodeIMG($this->impression_centre),
     ));
     $this->html = ob_get_clean();
-    $this->nomDossier = "Arrêt de travail n° " . $arret->id . ".pdf";
+    $this->nomDossier = "Arrêt de travail " . $civil->nom . " " . $civil->prenom . ".pdf";
 
     $this->general();
   }
@@ -86,7 +102,9 @@ class generatePDF {
       'civil' => $personne,
       'certif' => $certificat,
       'ems' => Agent::getInfoAgentIdEms($certificat->enregistrer_par),
-      'img' => $this->encodeIMG()
+      'impression_right' => $this->encodeIMG($this->impression_right),
+      'impression_left' => $this->encodeIMG($this->impression_left),
+      'impression_centre' => $this->encodeIMG($this->impression_centre),
     ));
     $this->html = ob_get_clean();
     $this->nomDossier = "Certificat de travail " . $personne->nom . " " . $personne->prenom . ".pdf";
@@ -101,10 +119,12 @@ class generatePDF {
       'civil' => $personne,
       'ppa' => $ppa,
       'ems' => Agent::getInfoAgentIdEms($ppa->enregistrer_par),
-      'img' => $this->encodeIMG()
+      'impression_right' => $this->encodeIMG($this->impression_right),
+      'impression_left' => $this->encodeIMG($this->impression_left),
+      'impression_centre' => $this->encodeIMG($this->impression_centre),
     ));
     $this->html = ob_get_clean();
-    $this->nomDossier = "Certificat de travail " . $personne->nom . " " . $personne->prenom . ".pdf";
+    $this->nomDossier = "Certificat PPA " . $personne->nom . " " . $personne->prenom . ".pdf";
 
     $this->general();
   }
@@ -117,7 +137,9 @@ class generatePDF {
       'ems' => Agent::getInfoAgentIdEms($ordonnance->enregistrer_par),
       'medicaments' => Info_Ordonnance::getList($ordonnance->id),
       'ordonnance' => Ordonnance::getInfo($ordonnance->id),
-      'img' => $this->encodeIMG()
+      'impression_right' => $this->encodeIMG($this->impression_right),
+      'impression_left' => $this->encodeIMG($this->impression_left),
+      'impression_centre' => $this->encodeIMG($this->impression_centre),
     ));
     $this->html = ob_get_clean();
     $this->nomDossier = "Ordonnance " . $personne->nom . " " . $personne->prenom . ".pdf";

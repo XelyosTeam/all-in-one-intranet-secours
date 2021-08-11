@@ -39,56 +39,58 @@
 
       <section class="part_img">
         <div>
-          <img class="round_profil" id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+          <img class="round_profil" id="image_civil" src="http://{{ _CopServeur }}/assets/img/identite/temp.png" alt="Photo Inconnu">
         </div>
       </section>
     </section>
 
 
     <div id="Liste_medicament">
-      <section id="medicament_1" class="ordonnance">
-        {# Section de gauche #}
-        <div id="nom_med_1" class="left_part">
-          <label>Nom médicament</label>
-          <select id="liste_1" onchange="affiche_suite(1);">
-            <option value="0">Sélection médicament</option>
-            <option value="0">============================</option>
-            {% for medicament in medicaments %}
-              <option value="{{ medicament.id }}">{{ medicament.nom|capitalize }}</option>
-            {% else %}
+      {% for i in 1..50 %}
+        <section id="medicament_{{ i }}" class="ordonnance">
+          {# Section de gauche #}
+          <div id="nom_med_{{ i }}" class="left_part">
+            <label>Nom médicament</label>
+            <select id="liste_{{ i }}" onchange="affiche_suite({{ i }});">
+              <option value="0">Sélection médicament</option>
+              <option value="0">============================</option>
+              {% for medicament in medicaments %}
+                <option value="{{ medicament.id }}">{{ medicament.nom }}</option>
+              {% else %}
                 {% set __ordonnance = false %}
                 <option>Aucun médicament disponible</option>
-            {% endfor %}
-          </select>
-          <p id="desc_1">deaz</p>
-        </div>
-
-        {# Section de droite #}
-        <div id="content_1" class="right_part">
-          <div id="qtn_1">
-            <label>Quantité :</label>
-            <input id="qtn_value_1" value="1" type="number" min="1" max="5" placeholder="Quantité" required>
-          </div>
-
-          <div id="T_1">
-            <label>Période :</label>
-            <input id="T_value_1" value="1" type="number" min="1" max="21" placeholder="Périodes en jour" required>
-          </div>
-
-          <div id="frq_1">
-            <label>Fréquences :</label>
-            <select id="frq_value_1">
-              <option value="1">Matin</option>
-              <option value="2">Midi</option>
-              <option value="3">Soir</option>
-              <option value="4">Matin/Soir</option>
-              <option value="5">Matin/Midi</option>
-              <option value="6">Midi/Soir</option>
-              <option value="7">Matin/Midi/Soir</option>
+              {% endfor %}
             </select>
+            <p id="desc_{{ i }}">deaz</p>
           </div>
-        </div>
-      </section>
+
+          {# Section de droite #}
+          <div id="content_{{ i }}" class="right_part">
+            <div id="qtn_{{ i }}">
+              <label>Quantité :</label>
+              <input id="qtn_value_{{ i }}" value="1" type="number" min="1" max="5" placeholder="Quantité" required>
+            </div>
+
+            <div id="T_{{ i }}">
+              <label>Période :</label>
+              <input id="T_value_{{ i }}" value="1" type="number" min="1" max="21" placeholder="Périodes en jour" required>
+            </div>
+
+            <div id="frq_{{ i }}">
+              <label>Fréquences :</label>
+              <select id="frq_value_{{ i }}">
+                <option value="1">Matin</option>
+                <option value="2">Midi</option>
+                <option value="3">Soir</option>
+                <option value="4">Matin/Soir</option>
+                <option value="5">Matin/Midi</option>
+                <option value="6">Midi/Soir</option>
+                <option value="7">Matin/Midi/Soir</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      {% endfor %}
     </div>
 
     {% if __ordonnance %}
@@ -110,5 +112,13 @@
 <script type="text/javascript">
   affiche_photo_personne();
   initialisationContent(1);
+
+  for (var i = 2; i <= 50; i++) {
+    let element = document.getElementById(`medicament_${i}`);
+    if (element) {
+      initialisationContent(i);
+      element.style.display = "none";
+    }
+  }
 </script>
 {% endblock %}

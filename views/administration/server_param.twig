@@ -10,7 +10,7 @@
 
 {% block key %}Paramètre Serveur{% endblock %}
 
-{% block title %}Paramètre Serveur{% endblock %}
+{% block title %} - Mode Admin -> Paramètre Serveur{% endblock %}
 
 {% block main %}
 <section class="contenu">
@@ -21,11 +21,33 @@
       <input class="short" type="number" name="failed_connexion" placeholder="{{ fail }}"></input>
     </div>
 
-    <div class="btn">
-      <button class="form_button" type="submit" name="button">Modifier</button>
-    </div>
-  </form>
+  <h1>Section Faction</h1>
+  <div>
+    <label for="name">État candidature :</label>
+    <select class="short" name="etat_recrut" id="etat_recrut">
+      {% if _Recrutement == "0" %}
+        <option value="0">Fermé</option>
+        <option value="1">Ouvert</option>
+      {% else %}
+        <option value="1">Ouvert</option>
+        <option value="0">Fermé</option>
+      {% endif %}
+    </select>
+  </div>
+
+  <div>
+    <p id="confirm_admin_modifserv">Modification(s) effectuée(s)</p>
+  </div>
+
+  <div class="btn">
+    <button class="form_button" type="submit" name="button" onclick="EditServParam();">Modifier</button>
+  </div>
+</form>
 </section>
 {% endblock %}
 
-{% block script %}{% endblock %}
+{% block script %}
+<script type="text/javascript">
+  document.getElementById("confirm_admin_modifserv").style.display = "none";
+</script>
+{% endblock %}

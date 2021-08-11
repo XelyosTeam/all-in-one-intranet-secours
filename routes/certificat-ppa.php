@@ -19,7 +19,7 @@ Flight::route('/certificat-ppa', function() {
 Flight::route('/certificat-ppa/@id_ppa', function($id_ppa) {
   verif_connecter();
   $ppa = PPA::getCertificat($id_ppa);
-  $ppa->rapport = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($ppa->rapport)));
+  $ppa->rapport = renderHTMLFromMarkdown(htmlspecialchars(strip_tags(urldecode($ppa->rapport))));
 
   Flight::view()->display('fiche/ppa.twig', array(
     'civil' => Personne::getinfoPersonne($ppa->personne),
@@ -28,4 +28,12 @@ Flight::route('/certificat-ppa/@id_ppa', function($id_ppa) {
   ));
 });
 
+Flight::route('/certificat-ppa/@id_ppa/impression', function($id_ppa) {
+  verif_connecter();
+  $impression = new generatePDF();
+
+  $ppa = PPA::getCertificat($id_ppa);
+  $ppa->rapport = urldecode($ppa->rapport);
+  $impression->ppa($ppa);
+});
 ?>

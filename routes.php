@@ -6,10 +6,10 @@ include 'routes/certificat-travail.php';
 include 'routes/chat.php';
 include 'routes/civil.php';
 include 'routes/connexion.php';
+include 'routes/documents.php'; // Documents
 include 'routes/dossier-candidat.php';
 include 'routes/ecole.php';
 include 'routes/edit.php';
-include 'routes/impression.php';
 include 'routes/insert.php';
 include 'routes/intervention.php';
 include 'routes/medicament.php';

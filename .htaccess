@@ -3,7 +3,15 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 
+# Redirectoin https automatique
+RewriteCond %{SERVER_NAME} =intranet-ems.xelyos.fr
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
 <Files ".env">
   Order Allow,Deny
   Deny from all
 </Files>
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW UPGRADE_INSECURE_REQUESTS:intranet-ems.xelyos.fr
+Header always set Content-Security-Policy: upgrade-insecure-requests
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW UPGRADE_INSECURE_REQUESTS:intranet-ems.xelyos.fr

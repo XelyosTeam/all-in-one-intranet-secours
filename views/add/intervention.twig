@@ -35,37 +35,39 @@
           </select>
         </div>
 
-        <div>
-          <label>Intervention :</label>
-
-          <select name="inter_name">
-            <option value="NULL">Sélectionner une intervention</option>
+        {% for i in 1..50 %}
+          <div id="saisie_intervention_{{ i }}">
+            <label>Intervention :</label>
+            <select id="intervention_value_{{ i }}" name="inter_name" onchange="afficheNext('saisie_intervention_{{ i }}', 'intervention_value_{{ i }}', 'saisie_intervention_{{ i + 1 }}');">
+              <option value="NULL">Sélectionner une intervention</option>
               <option value="NULL">============================</option>
               {% for inter in interventions %}
                 <option value="{{ inter.id }}">{{ inter.intitule|capitalize }}</option>
               {% else %}
-                  {% set __intervention = false %}
-                  <option>Aucune intervention disponible</option>
+                {% set __intervention = false %}
+                <option>Aucune intervention disponible</option>
               {% endfor %}
-          </select>
-        </div>
+            </select>
+          </div>
+
+        {% endfor %}
 
         <div>
           <label>Rapport :</label>
-          <textarea name="rapport" placeholder="Insérer un éventuel rapport"></textarea>
+          <textarea id="intervention_rapport" name="rapport" placeholder="Insérer un éventuel rapport"></textarea>
         </div>
       </section>
 
       <section class="part_img">
         <div>
-          <img class="round_profil" id="image_civil" src="http://{{ _CopServeur }}/assets/img/identité/temp.png" alt="Photo Inconnu">
+          <img class="round_profil" id="image_civil" src="http://{{ _CopServeur }}/assets/img/identite/temp.png" alt="Photo Inconnu">
         </div>
       </section>
     </section>
 
     {% if __intervention %}
       <div class="btn">
-        <button class="form_button" type="submit" name="button">Enregistrer</button>
+        <button class="form_button" type="submit" name="button" onclick="AddIntervention();">Enregistrer</button>
       </div>
     {% endif %}
 
@@ -78,5 +80,12 @@
 <script src="/assets/script/event_saisie.js"></script>
 <script type="text/javascript">
   affiche_photo_personne();
+
+  for (var i = 2; i <= 50; i++) {
+    let element = document.getElementById(`saisie_intervention_${i}`);
+    if (element) {
+      element.style.display = "none";
+    }
+  }
 </script>
 {% endblock %}

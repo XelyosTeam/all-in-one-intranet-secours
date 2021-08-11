@@ -13,11 +13,11 @@ Flight::route('/insert/arret', function() {
   /* Variable de POST */
   $civil = $_POST['id_civil'];
   $duree = $_POST['time'];
-  $rapport = $_POST['motif'];
+  $rapport = urlencode($_POST['motif']);
   /* Variable de POST */
 
   $agent = Agent::getInfoAgent();
-  addArret($civil, $duree, $agent->ems_id, $rapport);
+  addArret($civil, $duree, $agent, $rapport);
   addHistorique($agent->matricule, "1¤0¤0¤$civil");
 
   $info = Arret::getIDArret($civil, $agent->ems_id);
@@ -29,12 +29,12 @@ Flight::route('/insert/certificat', function() {
   /* Variable de POST */
   $civil = $_POST['citoyen'];
   $etat = $_POST['etat_job'];
-  $rapport = $_POST['motif'];
-  $metier = $_POST['job'];
+  $rapport = urlencode($_POST['motif']);
+  $metier = urlencode($_POST['job']);
   /* Variable de POST */
 
   $agent = Agent::getInfoAgent();
-  addCertificat($civil, $etat, $agent->ems_id, $metier, $rapport);
+  addCertificat($civil, $etat, $agent, $metier, $rapport);
   addHistorique($agent->matricule, "1¤0¤1¤$civil");
 
   $info = Certificat::getIDCertificat($civil, $agent->ems_id);
@@ -77,19 +77,14 @@ Flight::route('/insert/intervention', function() {
   /* Variable de POST */
   $civil = $_POST['id_civil'];
   $inter = $_POST['inter_name'];
-  $rapport = $_POST['rapport'];
+  $rapport = urlencode($_POST['rapport']);
   /* Variable de POST */
 
-  if ($inter == 'NULL') {
-    Flight::redirect("/intervention");
-  }
+  if ($inter == 'NULL') { return; }
 
   $agent = Agent::getInfoAgent();
-  addIntervention($civil, $inter, $agent->ems_id, $rapport);
+  addIntervention($civil, $inter, $agent, $rapport);
   addHistorique($agent->matricule, "1¤0¤2¤$civil" . "¤" . $inter);
-
-  $info = Intervention::getIDIntervention($civil, $agent->ems_id);
-  Flight::redirect("/intervention/$info->inter_id");
 });
 
 Flight::route('/insert/intervention-type', function() {
@@ -109,15 +104,14 @@ Flight::route('/insert/ppa', function() {
   /* Variable de POST */
   $civil = $_POST['id_civil'];
   $etat = $_POST['etat_ppa'];
-  $motif = $_POST['motif'];
+  $motif = urlencode($_POST['motif']);
   /* Variable de POST */
 
   $agent = Agent::getInfoAgent();
-  addPPA($civil, $etat, $motif, $agent->ems_id);
+  addPPA($civil, $etat, $motif, $agent);
   addHistorique($agent->matricule, "1¤0¤3¤$civil");
 
   $info = PPA::getIDPPA($civil, $agent->ems_id);
   Flight::redirect("/certificat-ppa/$info->id");
 });
-
 ?>

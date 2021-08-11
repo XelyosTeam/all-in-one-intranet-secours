@@ -8,7 +8,6 @@
 
 /* PC */
 
-  input:invalid
-  {
+  input:invalid {
     border: 2px dashed red;
   }

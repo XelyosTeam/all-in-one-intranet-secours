@@ -39,5 +39,4 @@ Flight::route("/delete/" . serveurIni('Faction', 'membre'), function() {
     Flight::redirect("/" . serveurIni('Faction', 'membre') . "/$info->matricule"); // Redirection vers la page de l'agent
   }
 });
-
 ?>

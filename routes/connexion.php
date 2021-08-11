@@ -52,7 +52,6 @@ Flight::route('/connexion', function() {
 
 Flight::route('/nouveau-mot-de-passe', function() {
   verif_connecter();
-  Flight::view()->display('new_mdp.twig');
+  Flight::view()->display('new_mdp.twig'); // Page de connexion --> Faire en sorte que si il n'existe pas de variable d'environnement, ce soit la page par défaut
 });
-
 ?>

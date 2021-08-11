@@ -15,13 +15,13 @@ class Agent extends Model {
   public static function getInfoAgent() { // Informations d'un EMS avec le matricule
     return Agent::where('matricule', Session::get('matricule_ems'))->find_one();
   }
-  public static function getInfoAgentMatricule($matricule) { // Informations d'un agent de police avec le matricule
+  public static function getInfoAgentMatricule($matricule) { // Informations d'un agent de ems avec le matricule
     return Agent::where('matricule', $matricule)->find_one();
   }
-  public static function getInfoAgentIdEms($id) { // Informations d'un agent de police avec l'ID
+  public static function getInfoAgentIdEms($id) { // Informations d'un agent de ems avec l'ID
     return Agent::where('ems_id', $id)->find_one();
   }
-  public static function getInfoAgentIDUser($id) { // Informations d'un agent de police avec l'ID
+  public static function getInfoAgentIDUser($id) { // Informations d'un agent de ems avec l'ID
     return Agent::where('user_id', $id)->find_one();
   }
   public static function getListAgent() {

@@ -22,17 +22,21 @@
 <section class="information_casier">
   <h1>Certificat Arrêt de Travail</h1>
   <img src="/assets/img/logo.png" alt="">
-  <p>Par ce présent document le centre Hospitalier de {{ _nomServeur }} atteste l’arrêt
-     de travail de <strong>{% if civil.sexe == "M" %}Monsieur{% else %}Madame{% endif %} {{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}</strong>
-     pour la ou les raisons suivantes : <strong>{{ arret.motif }}</strong>.
+  <p>
+    Par ce présent document le centre Hospitalier de {{ _nomServeur }} atteste l’arrêt
+    de travail de <strong>{% if civil.sexe == "M" %}Monsieur{% else %}Madame{% endif %} {{ civil.nom }} {{ civil.prenom }}</strong>
+    pour la ou les raisons suivantes :
    </p>
+   <div class="markdown-body">
+     {{ arret.motif|raw }}
+   </div>
    <p>Cet arrêt de travail prend effet à la date du <strong>{{ arret.enregistrer_le|date("d/m/Y") }}
    </strong> au <strong>{{ arret.fin_le|date("d/m/Y") }}</strong>.
    </p>
    <p>En cas de prolongation, un nouveau certificat vous sera remis.</p>
-   <p><strong>Délivrée par : </strong><a href="/{{ _membreFaction }}/{{ ems.matricule }}">{{ ems.grade|capitalize }} {{ ems.nom|capitalize }}</a></p>
+   <p><strong>Délivrée par : </strong><a href="/{{ _membreFaction }}/{{ ems.matricule }}">{% if arret.enregistrer_name %}{{ arret.enregistrer_name }}{% else %}{{ ems.grade }} {{ ems.nom }}{% endif %}</a></p>
    <div class="lien">
-     <a href="/impression/arret-travail/{{ arret.id }}">Imprimer le certificat</a>
+     <a href="/arret-travail/{{ arret.id }}/impression">Imprimer le certificat</a>
    </div>
 </section>
 {% endblock %}

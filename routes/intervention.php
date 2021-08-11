@@ -19,7 +19,7 @@ Flight::route('/intervention', function() {
 Flight::route('/intervention/@id_intervention', function($id_intervention) {
   verif_connecter();
   $intervention = Intervention::getIntervention($id_intervention);
-  $intervention->rapport = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($intervention->rapport)));
+  $intervention->rapport = renderHTMLFromMarkdown(htmlspecialchars(strip_tags(urldecode($intervention->rapport))));
 
   Flight::view()->display('fiche/intervention.twig', array(
     'civil' => Personne::getinfoPersonne($intervention->id_civil),
@@ -28,4 +28,12 @@ Flight::route('/intervention/@id_intervention', function($id_intervention) {
   ));
 });
 
+Flight::route('/intervention/@id_intervention/impression', function($id_intervention) {
+  verif_connecter();
+  $impression = new generatePDF();
+
+  $intervention = Intervention::getIntervention($id_intervention);
+  $intervention->remarque = urldecode($intervention->remarque);
+  $impression->intervention($intervention);
+});
 ?>

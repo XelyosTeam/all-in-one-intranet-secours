@@ -6,7 +6,7 @@
     Created by : Xelyos - Aros
     Edited by :
   */
-  function addArret($civil, $duree, $matricule, $rapport) {
+  function addArret($civil, $duree, $agent, $rapport) {
     //date de départ : 01 avril 2013
     $dateDepart = date("Y-m-d");
     //la première étape est de transformer cette date en timestamp
@@ -18,7 +18,8 @@
     $arret_travail->set(array(
                   'personne' => $civil,
                   'motif' => $rapport,
-                  'enregistrer_par' => $matricule,
+                  'enregistrer_par' => $agent->ems_id,
+                  'enregistrer_name' => $agent->grade . " " . $agent->nom,
                   'enregistrer_le' => $dateDepart,
                   'fin_le' => $dateFin
                 )
@@ -43,26 +44,28 @@
     return $matricule_ems;
   }
 
-  function addCertificat($civil, $etat, $matricule, $metier, $rapport) {
+  function addCertificat($civil, $etat, $agent, $metier, $rapport) {
     $certificat_travail = Model::factory('Certificat')->create();
     $certificat_travail->set(array(
                   'personne' => $civil,
                   'etat_job' => $etat,
                   'job_vise' => $metier,
                   'motif' => $rapport,
-                  'enregistrer_par' => $matricule,
+                  'enregistrer_par' => $agent->ems_id,
+                  'enregistrer_name' => $agent->grade . " " . $agent->nom,
                   'enregistrer_le' => date("Y-m-d H:i:s")
                 )
               );
     $certificat_travail->save();
   }
 
-  function addIntervention($civil, $inter, $matricule, $rapport) {
+  function addIntervention($civil, $inter, $agent, $rapport) {
     $intervention = Model::factory('Intervention_t')->create();
     $intervention->set(array(
                   'personne' => $civil,
                   'numero_intervention' => $inter,
-                  'enregistrer_par' => $matricule,
+                  'enregistrer_par' => $agent->ems_id,
+                  'enregistrer_name' => $agent->grade . " " . $agent->nom,
                   'enregistrer_le' => date("Y-m-d H:i:s"),
                   'remarque' => $rapport
                 )
@@ -105,7 +108,8 @@
     $Ordonnance = Model::factory('Ordonnance')->create();
     $Ordonnance->set(array(
                   'patient' => $patient,
-                  'enregistrer_par' => $agent,
+                  'enregistrer_par' => $agent->ems_id,
+                  'enregistrer_name' => $agent->grade . " " . $agent->nom,
                   'enregistrer_le' => $date
                 )
               );
@@ -114,13 +118,14 @@
     return $date;
   }
 
-  function addPPA($civil, $etat, $motif, $matricule) {
+  function addPPA($civil, $etat, $motif, $agent) {
     $certificat_travail = Model::factory('PPA')->create();
     $certificat_travail->set(array(
                   'personne' => $civil,
                   'etat_ppa' => $etat,
                   'rapport' => $motif,
-                  'enregistrer_par' => $matricule,
+                  'enregistrer_par' => $agent->ems_id,
+                  'enregistrer_name' => $agent->grade . " " . $agent->nom,
                   'enregistrer_le' => date("Y-m-d H:i:s")
                 )
               );

@@ -1,11 +1,22 @@
 {
   "navigation": [
-
+    {
+      "nom": "Procédure",
+      "identifiant": "procedure"
+    },
+    {
+      "nom": "Prise en Charge",
+      "identifiant": "prisecharge"
+    }
   ],
   "contenu": [
     {
-      "identifiant": "waiting",
-      "fichier": "waiting.md"
+      "identifiant": "procedure",
+      "fichier": "procedure.md"
+    },
+    {
+      "identifiant": "prisecharge",
+      "fichier": "prisecharge.md"
     }
   ]
 }

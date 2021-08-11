@@ -6,9 +6,13 @@
     Created by : Xelyos - Aros
     Edited by :
   */
-  function editCivil($id_civil, $sang, $donneur) {
+  function editCivil($id_civil, $sang, $donneur, $phone) {
     $civil = Model::factory('Personne')->where('id', $id_civil)->find_one();
-    $civil->set(array('grp_sanguin' => $sang, 'donneur' => $donneur));
+    $civil->set(array(
+      'grp_sanguin' => $sang,
+      'donneur' => $donneur,
+      'phone' => $phone
+    ));
     $civil->save();
   }
 
@@ -77,8 +81,7 @@
     $nex_mdp->save();
   }
 
-  function updateProf($id_ems)
-  {
+  function updateProf($id_ems) {
     $habilitation = Model::factory('Habilitation')->where('matricule', $id_ems)->find_one();
     $habilitation->set('hab_1', 3);
     $habilitation->save();

@@ -1,119 +1,106 @@
 /*
-  Le projet All in One est un produit Xelyos mis à disposition gratuitement
-  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
-  ne pas supprimer le ou les auteurs du projet.
-  Created by : Xelyos - Aros
-  Edited by :
+Le projet All in One est un produit Xelyos mis à disposition gratuitement
+pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+ne pas supprimer le ou les auteurs du projet.
+Created by : Xelyos - Aros
+Edited by :
 */
 
 /* PC */
 
-  .recherche
-  {
-    margin-top: 1%;
-    margin-left : 10%;
-    margin-bottom: 2%;
-    width: 80%;
-    border-radius: 10px;
-    background-color: var(--background);
-    padding: 1%;
-  }
+.recherche {
+  margin-top: 1%;
+  margin-left : 10%;
+  margin-bottom: 2%;
+  width: 80%;
+  border-radius: 10px;
+  background-color: var(--background);
+  padding: 1%;
+}
 
-  .recherche input
-  {
-    margin-right: 7%;
-    border: none;
-    border-bottom: 1px solid #000;
-    width: 15%;
-    height: 10%;
-    background-color: var(--background);
-    color: var(--Text);
-    font-weight: bold;
-    font-size: 1.5em;
-  }
+.recherche input {
+  margin-right: 7%;
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 15%;
+  height: 10%;
+  background-color: var(--background);
+  color: var(--Text);
+  font-weight: bold;
+  font-size: 1.5em;
+}
 
-  .recherche button
-  {
-    margin-left: 2%;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--Bouton);
-    color: var(--BoutonText);
-    padding: 1%;
-    font-size: 1.25em;
-  }
+.recherche button {
+  margin-left: 2%;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--Bouton);
+  color: var(--BoutonText);
+  padding: 1%;
+  font-size: 1.25em;
+}
 
-  .Resultat, .Resultat1, .Resultat2
-  {
-    display: block;
-    margin-top: 1%;
-    margin-left: 15%;
-    width: 40%;
-    border-radius: 10px;
-    background-color: var(--background);
-    padding-bottom: 0.5%;
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 2%;
-    border-bottom: 0.5px solid var(--Text);
-  }
+.Resultat, .Resultat1, .Resultat2 {
+  display: block;
+  margin-top: 1%;
+  margin-left: 15%;
+  width: 40%;
+  border-radius: 10px;
+  background-color: var(--background);
+  padding-bottom: 0.5%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 2%;
+  border-bottom: 0.5px solid var(--Text);
+}
 
-  .Resultat1
-  {
-    margin-left: 20%;
-    width: 30%;
-    grid-template-columns: repeat(2, 1fr);
-  }
+.Resultat1 {
+  margin-left: 20%;
+  width: 30%;
+  grid-template-columns: repeat(2, 1fr);
+}
 
-  .Resultat2
-  {
-    width: 50%;
-    grid-template-columns: repeat(4, 1fr);
-  }
+.Resultat2 {
+  width: 50%;
+  grid-template-columns: repeat(4, 1fr);
+}
 
-  .Resultat img, .Resultat1 img, .Resultat2 img
-  {
-    width: 40%;
-    height: auto;
-    margin-top: 10%;
-    margin-left: 30%;
-    margin-bottom: 5%;
-  }
+.Resultat img, .Resultat1 img, .Resultat2 img {
+  width: 40%;
+  height: auto;
+  margin-top: 10%;
+  margin-left: 30%;
+  margin-bottom: 5%;
+}
 
-  .Resultat p, .Resultat1 p, .Resultat2 p
-  {
-    white-space: nowrap;
-    padding-left: 20%;
-    padding-top: 15%;
-    font-weight: bold;
-  }
+.Resultat p, .Resultat1 p, .Resultat2 p {
+  white-space: nowrap;
+  padding-left: 20%;
+  padding-top: 15%;
+  font-weight: bold;
+}
 
-  .Resultat a, .Resultat1 a, .Resultat2 a
-  {
-    padding-top: 20%;
-    text-decoration: none;
-    color: var(--Text);
-    font-weight: bold;
-    font-size: 1.5em;
-  }
+.Resultat a, .Resultat1 a, .Resultat2 a {
+  padding-top: 20%;
+  text-decoration: none;
+  color: var(--Text);
+  font-weight: bold;
+  font-size: 1.5em;
+}
 
-  .Resultat1 a
-  {
-    padding-top: 15%;
-  }
+.Resultat1 a {
+  padding-top: 15%;
+}
 
-  .Resultat2 p
-  {
-    padding-top: 10%;
-  }
+.Resultat2 p {
+  padding-top: 10%;
+}
 
-  .Resultat2 a
-  {
-    padding-top: 15%;
-  }
+.Resultat2 a {
+  padding-top: 15%;
+}
 
-  .Resultat a:hover, .Resultat1 a:hover, .Resultat2 a:hover
-  {
-    color: var(--BoutonTextHover);
-  }
+.Resultat a:hover, .Resultat1 a:hover, .Resultat2 a:hover {
+  color: var(--BoutonTextHover);
+}

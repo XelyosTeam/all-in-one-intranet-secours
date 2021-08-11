@@ -39,5 +39,4 @@ Flight::route('/recherche/photo/personne', function() {
 
   Flight::json($data);
 });
-
 ?>

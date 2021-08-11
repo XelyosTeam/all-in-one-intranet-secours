@@ -13,9 +13,12 @@ include "candidature.php";
 include "certificat-travail.php";
 include "certificat-ppa.php";
 include "chat.php";
+include 'document.php'; // Documents
+include 'folder.php'; // Documents
 include "grade.php";
 include "habilitation.php";
 include "historique.php";
+include 'historique-document.php'; // Documents
 include "historique-secours.php";
 include "intervention.php";
 include "intervention-liste.php";

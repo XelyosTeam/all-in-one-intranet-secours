@@ -5,7 +5,7 @@
 /**
  * Il nous faut une fonction pour récupérer le JSON des messages et les afficher correctement
  */
-function getMessages(){
+function getMessages() {
   // 1. Elle doit créer une requête AJAX pour se connecter au serveur, et notamment au fichier handler.php
   const requeteAjax = new XMLHttpRequest();
   requeteAjax.open("GET", "/chat");
@@ -64,6 +64,6 @@ document.querySelector('form').addEventListener('submit', postMessage);
  * des messages toutes les 3 secondes et qui donne
  * l'illusion du temps réel.
  */
-const interval = window.setInterval(getMessages, 3000);
+const interval = window.setInterval(getMessages, 5000);
 
 getMessages();

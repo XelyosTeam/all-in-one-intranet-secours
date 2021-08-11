@@ -18,13 +18,13 @@
   <section>
     {% for agent in ems %}
     <div onclick="protocoleHistorique('{{ agent.matricule }}');">
-      <img src="http://{{ _CopServeur }}/assets/img/identité/{{ agent.photo}}" alt="Photo de {{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}">
+      <img class="round_profil" src="http://{{ _CopServeur }}/assets/img/identite/{{ agent.photo}}" alt="Photo de {{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}">
       <p>{{ agent.grade}} {{ agent.nom}}</p>
     </div>
     {% endfor %}
     {% for agent in oldems %}
     <div class="old" onclick="protocoleHistorique('{{ agent.matricule }}');">
-      <img src="http://{{ _CopServeur }}/assets/img/identité/{{ agent.photo}}" alt="Photo de {{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}">
+      <img class="round_profil" src="http://{{ _CopServeur }}/assets/img/identite/{{ agent.photo}}" alt="Photo de {{ agent.nom|capitalize }} {{ agent.prenom|capitalize }}">
       <p>{{ agent.nom}} {{ agent.prenom}}</p>
     </div>
     {% endfor %}

@@ -7,8 +7,7 @@
 */
 
 /* PC */
-nav
-{
+nav {
   position: fixed;
   left: 3%;
   top: 47%;
@@ -17,8 +16,7 @@ nav
   padding: 1% 1% 1% 1%;
 }
 
-nav a
-{
+nav a {
   display: block;
   padding-top: 1%;
   text-decoration: none;
@@ -26,13 +24,11 @@ nav a
   font-size: 1.1em;
 }
 
-nav a:hover
-{
+nav a:hover {
   color: var(--Text);
 }
 
-nav p
-{
+nav p {
   font-weight: bold;
   text-decoration: underline;
   color: var(--Text);
@@ -40,8 +36,7 @@ nav p
 }
 
 
-.info_pesonne
-{
+.info_pesonne {
   display: block;
   margin-top: 2%;
   margin-left: 25%;
@@ -50,8 +45,7 @@ nav p
   background-color: var(--background);
 }
 
-.info_pesonne h1
-{
+.info_pesonne h1 {
   text-align: center;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -59,8 +53,7 @@ nav p
   border-bottom: 2px solid var(--Text);
 }
 
-.info_pesonne div label
-{
+.info_pesonne div label {
   margin-left: 3%;
   text-align: left;
   font-weight: bold;
@@ -68,8 +61,7 @@ nav p
   font-size: 1.25em;
 }
 
-.info_pesonne div input
-{
+.info_pesonne div input {
   border: none;
   border-bottom: 1px solid #000;
   margin-left: 5%;
@@ -82,8 +74,7 @@ nav p
   font-size: 1.5em;
 }
 
-.info_pesonne div select
-{
+.info_pesonne div select {
   border: none;
   border-bottom: 1px solid #000;
   margin-left: 5%;
@@ -96,8 +87,7 @@ nav p
   font-size: 1.5em;
 }
 
-.info_pesonne div textarea
-{
+.info_pesonne div textarea {
   border: none;
   border-bottom: 1px solid #000;
   text-align: justify;
@@ -110,18 +100,15 @@ nav p
   font-size: 1.5em;
 }
 
-.info_pesonne .short
-{
+.info_pesonne .short {
   width: 30%;
 }
 
-.info_pesonne .btn
-{
+.info_pesonne .btn {
   text-align: right;
 }
 
-.info_pesonne .btn button
-{
+.info_pesonne .btn button {
   text-align: right;
   margin-right: 5%;
   margin-bottom: 2%;

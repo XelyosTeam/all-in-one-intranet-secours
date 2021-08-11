@@ -18,11 +18,11 @@
   /* Associer Flight à Twig */
   $loader = new \Twig\Loader\FilesystemLoader(dirname(__FILE__) . '/views');
   $twigConfig = array(
-      'cache' => './cache/' . serveurIni('Serveur', 'version') . '/twig/',
-      // 'debug' => true,
+    'cache' => './cache/' . serveurIni('Serveur', 'version') . '/twig/',
+    // 'debug' => true,
   );
 
-  /* Version 2.3.1 */
+  /* Version 3.0.0 */
   Flight::register('view', '\Twig\Environment', array($loader, $twigConfig), function ($twig) {
       $twig->addExtension(new \Twig\Extension\DebugExtension()); // Add the debug extension
       $twig->addGlobal('_agent', Agent::getInfoAgent());
@@ -33,12 +33,14 @@
       $twig->addGlobal('_nomFaction', serveurIni('Faction', 'nom'));
       $twig->addGlobal('_nomcompletFaction', serveurIni('Faction', 'nomcomplet'));
       $twig->addGlobal('_BDDFaction', serveurIni('Faction', 'metierBDD'));
+      $twig->addGlobal('_Recrutement', serveurIni('Faction', 'etatRecrutement'));
       //Serveur
       $twig->addGlobal('_nomServeur', serveurIni('Serveur', 'nom'));
       $twig->addGlobal('_jeuServeur', serveurIni('Serveur', 'jeu'));
       $twig->addGlobal('_Version', serveurIni('Serveur', 'version'));
       $twig->addGlobal('_CopServeur', serveurIni('Serveur', 'url_cop'));
       $twig->addGlobal('_Serveur', serveurIni('Serveur', 'url'));
+      $twig->addGlobal('_siteVitrine', serveurIni('Serveur', 'url_vitrine'));
       // Habilitation
       $twig->addGlobal('_Hab1', serveurIni('HABILITATION', 'hab_1'));
       $twig->addGlobal('_Hab2', serveurIni('HABILITATION', 'hab_2'));
@@ -70,8 +72,7 @@
   });
   /* Association à la base de donnée */
 
-  Flight::route('/', function()
-  {
+  Flight::route('/', function() {
     verif_connecter();
     $agent = Agent::getInfoAgent();
     Flight::view()->display('fiche/ems.twig', array(
@@ -80,8 +81,7 @@
     ));
   });
 
-  Flight::route('/formation', function()
-  {
+  Flight::route('/formation', function() {
     verif_connecter();
 
     $path = dirname(__FILE__);
@@ -110,7 +110,7 @@
 
   Flight::map('notFound', function(){
     verif_connecter();
-    Flight::redirect("/"); // Redirige vers la page
+    Flight::view()->display('404.twig');
   });
 
   Flight::start(); // Dernière ligne du fichier

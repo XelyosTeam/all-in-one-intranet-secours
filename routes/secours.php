@@ -174,5 +174,4 @@ Flight::route("/" . serveurIni('Faction', 'membre') . "/@matricule/modification"
 
   Flight::redirect("/" . serveurIni('Faction', 'membre') . "/$matricule");
 });
-
 ?>

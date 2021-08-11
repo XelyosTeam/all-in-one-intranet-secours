@@ -38,7 +38,7 @@ Flight::route('/edit/mdp', function() {
 
   addHistorique($agent->matricule, "2¤0¤0");
 
-  Flight::redirect("/connexion");
+  Flight::redirect("/connexion"); // Redirige vers la page
 });
 
 Flight::route('/edit/mdp/admin', function() {
@@ -57,7 +57,7 @@ Flight::route('/edit/mdp/admin', function() {
 
   $op = Agent::getInfoAgent();
   addHistorique($op->matricule, "0¤2¤0$agent->matricule");
-  Flight::redirect("/" . serveurIni('Faction', 'membre') . "/$agent->matricule");
+  Flight::redirect("/" . serveurIni('Faction', 'membre') . "/$agent->matricule"); // Redirige vers la page
 });
 
 Flight::route('/edit/rehabilitaton', function() {
@@ -78,5 +78,4 @@ Flight::route('/edit/rehabilitaton', function() {
     Flight::redirect("/" . serveurIni('Faction', 'membre') . "/$old->matricule");
   }
 });
-
 ?>
