@@ -37,8 +37,7 @@ function open_menu() {
   maskSousMenu();
 }
 
-function maskSousMenu()
-{
+function maskSousMenu() {
   for (var i = 1; i < 10; i++) {
     if (document.getElementById(i)) { // On vérifie que la "famille" existe
       document.getElementById(i).style.display = "initial";
@@ -67,8 +66,7 @@ function afficheSousMenu(id) {
   }
 }
 
-function redirectionButton(id, section)
-{
+function redirectionButton(id, section) {
   switch (id) {
     /* Bouton menu principal */
     case 7:
@@ -109,6 +107,9 @@ function redirectionButton(id, section)
     break;
     case 31:
       document.location.href="/formation";
+      break;
+    case 32:
+      document.location.href="/documents";
       break;
 
     /* Registre */

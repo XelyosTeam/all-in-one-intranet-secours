@@ -17,6 +17,9 @@ function decryptHistorique($code) {
     case '0¤0¤0':
       return "ADMIN : Modification Paramètre Serveur - Echec Maximum - " . $code[3];
       break;
+    case '0¤0¤0':
+      return "ADMIN : Modification Paramètre serveur - Etat Recrutement - " . decryptRecrutement($code[3]);
+      break;
     case '0¤1¤0':
       return "ADMIN : Ajout intervention dans la liste => " . $code[3];
       break;
@@ -62,6 +65,12 @@ function decryptHistorique($code) {
       break;
     case '2¤0¤1':
       return "Modification Groupe sanguin - " . $code[3] . " => " . getCivilName($code[3]) . " || " . $code[4] . " >>> " . $code[5];
+      break;
+    case '2¤0¤2':
+      return "Modification Donneur - " . $code[3] . " => " . getCivilName($code[3]) . " || " . $code[4] . " >>> " . $code[5];
+      break;
+    case '2¤0¤3':
+      return "Modification Téléphone - " . $code[3] . " => " . getCivilName($code[3]) . " || " . $code[4] . " >>> " . $code[5];
       break;
 
     /* Ecole */
@@ -149,6 +158,44 @@ function decryptHistorique($code) {
       break;
     case '2¤3¤1':
       return "Ecole : Candidature n°" . $code[3] . " refusée";
+      break;
+
+    /* Historique documents */
+    case '6¤0¤0':
+      return "Documents - Création dossier - " . $code[3] . " => " . $code[4];
+      break;
+    case '6¤0¤1':
+      return "Documents - Création document - " . $code[3] . " => " . $code[4];
+      break;
+    case '6¤0¤2':
+      return "Documents - Ajout image dans document - " . $code[3] . " => " . $code[4];
+      break;
+    case '6¤0¤3':
+      return "Documents - Création image - " . $code[3] . " => " . $code[4];
+      break;
+    case '6¤0¤4':
+      return "Documents - Création PDF - " . $code[3] . " => " . $code[4];
+      break;
+
+    case '6¤1¤0':
+      return "Documents - Modification Dossier - " . $code[3] . " => " . $code[4];
+      break;
+    case '6¤1¤1':
+      return "Documents - Modification Document Paramètres - " . $code[3] . " => " . $code[4];
+      break;
+    case '6¤1¤2':
+      return "Documents - Modification Document Texte - " . $code[3] . " => " . $code[4];
+      break;
+
+    case '6¤2¤0':
+      return "Documents - Suppression Document - " . $code[3] . " => " . $code[4];
+      break;
+
+    case '6¤3¤0':
+      return "Documents - Déplacement Document - " . $code[3] . " - " . $code[4]. " => " . $code[5];
+      break;
+    case '6¤3¤1':
+      return "Documents - Déplacement Répertoire - " . $code[3] . " - " . $code[4]. " => " . $code[5];
       break;
 
     default:
@@ -329,5 +376,17 @@ function AddHistoriqueModifAgent($id_ems, $matricule_ems, $grade, $hab1, $hab2, 
   }
 }
 
-
+function decryptRecrutement($type) {
+  switch ($type) {
+    case 0:
+      return "Fermé";
+      break;
+    case 1:
+      return "Ouvert";
+      break;
+    default:
+      return "Erreur dans le décryptage de la solution";
+      break;
+  }
+}
 ?>

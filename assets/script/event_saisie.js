@@ -18,8 +18,7 @@ function createData(var_tab, var_tab2) {
 }
 
 /* On affiche la photo de la personne en fonction de son id */
-function affiche_photo_personne()
-{
+function affiche_photo_personne() {
   let civil_id = document.getElementById("personne_type").value;
 
   // On met en forme les données
@@ -34,14 +33,13 @@ function affiche_photo_personne()
   // On récupère le résultat de la requête
   requeteAjax.onload = function(){
     const resultat = JSON.parse(requeteAjax.responseText);
-    document.getElementById("image_civil").setAttribute('src', 'https://intranet-lspd.xelyos.fr/assets/img/identité/' + resultat.photo);
+    document.getElementById("image_civil").setAttribute('src', 'https://intranet-lspd.xelyos.fr/assets/img/identite/' + resultat.photo);
     document.getElementById("image_civil").setAttribute('alt', 'Photo ' + resultat.nom + ' ' + resultat.prenom);
   }
 }
 
 /* On affiche la photo d'un agent */
-function affiche_photo_ems()
-{
+function affiche_photo_ems() {
   let cop_id = document.getElementById("ems_type").value;
 
   // On met en forme les données
@@ -56,14 +54,13 @@ function affiche_photo_ems()
   // On récupère le résultat de la requête
   requeteAjax.onload = function(){
     const resultat = JSON.parse(requeteAjax.responseText);
-    document.getElementById("image_ems").setAttribute('src', 'https://intranet-lspd.xelyos.fr/assets/img/identité/' + resultat.photo);
+    document.getElementById("image_ems").setAttribute('src', 'https://intranet-lspd.xelyos.fr/assets/img/identite/' + resultat.photo);
     document.getElementById("image_ems").setAttribute('alt', 'Photo ' + resultat.grade + ' ' + resultat.nom);
   }
 }
 
 /* On affiche la photo d'un agent */
-function affiche_photo_ems_2()
-{
+function affiche_photo_ems_2() {
   let cop_id = document.getElementById("ems_type_2").value;
 
   // On met en forme les données
@@ -78,7 +75,7 @@ function affiche_photo_ems_2()
   // On récupère le résultat de la requête
   requeteAjax.onload = function(){
     const resultat = JSON.parse(requeteAjax.responseText);
-    document.getElementById("image_ems2").setAttribute('src', 'https://intranet-lspd.xelyos.fr/assets/img/identité/' + resultat.photo);
+    document.getElementById("image_ems2").setAttribute('src', 'https://intranet-lspd.xelyos.fr/assets/img/identite/' + resultat.photo);
     document.getElementById("image_ems2").setAttribute('alt', 'Photo ' + resultat.grade + ' ' + resultat.nom);
   }
 }
@@ -168,16 +165,74 @@ function editDescriptionMed() {
   changeDescriptionMedicament();
 }
 
+/* Modification Serveur Param */
+function EditServParam() {
+  event.preventDefault(); // Arret du formulaire
 
+  let value_tab = [
+    "failed_connexion",
+    "etat_recrut"
+  ];
 
+  const data = createData(value_tab, value_tab);
 
+  // On envoi le modèle
+  const requeteAjax = new XMLHttpRequest();
+  requeteAjax.open('POST', '/administration/parametre-serveur/modification');
+  requeteAjax.send(data);
+  document.getElementById("confirm_admin_modifserv").style.display = "block";
+}
 
+/* Aficher la liste box suivante */
+function afficheNext(actuel, contentValue, suivant) {
+  var act = document.getElementById(actuel);
+  var actValue = document.getElementById(contentValue);
+  if (act && actValue) {
+    if (actValue.value) {
+      var next = document.getElementById(suivant);
+      if (next) {
+        next.style.display = "block";
+      }
+    }
+  }
+}
 
+/* Ajouter intervention */
+function AddIntervention() {
+  event.preventDefault(); // Arret du formulaire
 
+  cpt = 0;
 
+  for (var i = 0; i <= 50; i++) {
+    let element = document.getElementById(`saisie_intervention_${i}`);
+    if (element) {
+      let content = document.getElementById(`intervention_value_${i}`);
+      if (content.value != 'NULL') {
+        // On ajoute le délit
+        let entete = ['inter_name', 'rapport', 'id_civil'];
+        let contentEntete = [
+          `intervention_value_${i}`, 'intervention_rapport',
+          'personne_type',
+        ];
+        let data = createData(entete, contentEntete);
+        cpt += 1;
 
+        // On envoi le modèle
+        var requeteAjax = new XMLHttpRequest();
+        requeteAjax.open('POST', '/insert/intervention');
+        requeteAjax.send(data);
+      }
+    }
+  }
 
+  if (cpt > 0) {
+    if (cpt == 1) {
+      alert("L'intervention a été ajoutée");
+    }
+    else {
+      alert(`Les ${cpt} interventions ont été ajoutées !`);
+    }
 
-
-
-// fz
+    window.location.replace(`/civil/${document.getElementById('personne_type').value}`);
+  }
+}

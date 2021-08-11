@@ -10,7 +10,7 @@
 
 {% block key %}Fiche {{ _BDDFaction }}{% endblock %}
 
-{% block title %} - Fiche {{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}{% endblock %}
+{% block title %} - Fiche {{ civil.nom }} {{ civil.prenom }}{% endblock %}
 
 {% block main %}
 
@@ -23,7 +23,11 @@
   {% for intervention in interventions %}
   <div class="content">
     <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
-    <p>{{ intervention.nom_inter|capitalize }}</p>
+    {% if intervention.nom_inter|length > 30 %}
+      <p>{{ intervention.nom_inter|slice(0, 30) }}...</p>
+    {% else %}
+      <p>{{ intervention.nom_inter}}<p>
+    {% endif %}
     <a href="/intervention/{{ intervention.inter_id }}">Consulter</a>
   </div>
   {% else %}
@@ -40,7 +44,11 @@
   {% for arret in arrets %}
   <div class="content">
     <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
-    <p>{{ arret.motif|slice(0, 20) }} ...</p>
+    {% if arret.motif|length > 30 %}
+      <p>{{ arret.motif|slice(0, 30) }}...</p>
+    {% else %}
+      <p>{{ arret.motif}}<p>
+    {% endif %}
     <a href="/arret-travail/{{ arret.id }}">Consulter</a>
   </div>
   {% else %}
@@ -56,7 +64,13 @@
 
   {% for certificat in certificats %}
   <div class="content">
-    <p>{{ certificat.job_vise|capitalize }}</p>
+
+    {% if certificat.job_vise|length > 30 %}
+      <p>{{ certificat.job_vise|slice(0, 30) }}...</p>
+    {% else %}
+      <p>{{ certificat.job_vise }}</p>
+    {% endif %}
+
     <p>
       {% if certificat.etat_job == 0 %}
       Refusé

@@ -17,9 +17,11 @@ class Intervention extends Model {
                        ->order_by_desc('enregistrer_le')
                        ->find_many();
   }
+  
   public static function getIDIntervention($id, $matricule) { // Récuparatoin de l'ID d'une personne enfonction de son nom et prénom
     return Intervention::where(array('id_civil' => $id, 'enregistre_par' => $matricule))->order_by_desc('inter_id')->find_one();
   }
+  
   public static function getIntervention($id) {
     return Intervention::where('inter_id', $id)
                        ->find_one();

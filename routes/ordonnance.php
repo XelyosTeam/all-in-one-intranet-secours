@@ -34,4 +34,11 @@ Flight::route('/ordonnance/@n_ordonnance', function($n_ordonnance) {
   ));
 });
 
+Flight::route('/ordonnance/@n_ordonnance/impression', function($n_ordonnance) {
+  verif_connecter();
+  $impression = new generatePDF();
+
+  $ordonnance = Ordonnance::getInfo($n_ordonnance);
+  $impression->ordonnance($ordonnance);
+});
 ?>

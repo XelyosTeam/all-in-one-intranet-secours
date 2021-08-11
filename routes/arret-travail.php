@@ -19,7 +19,7 @@ Flight::route('/arret-travail', function() {
 Flight::route('/arret-travail/@id_arret', function($id_arret) {
   verif_connecter();
   $arret = Arret::getArret($id_arret);
-      $arret->motif = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($arret->motif)));
+  $arret->motif = renderHTMLFromMarkdown(htmlspecialchars(strip_tags(urldecode($arret->motif))));
 
   Flight::view()->display('fiche/arret.twig', array(
     'civil' => Personne::getinfoPersonne($arret->personne),
@@ -28,4 +28,12 @@ Flight::route('/arret-travail/@id_arret', function($id_arret) {
   ));
 });
 
+Flight::route('/arret-travail/@id_arret/impression', function($id_arret) {
+  verif_connecter();
+  $impression = new generatePDF();
+
+  $arret = Arret::getArret($id_arret);
+  $arret->motif = urldecode($arret->motif);
+  $impression->arret($arret);
+});
 ?>

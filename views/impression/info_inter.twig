@@ -1,53 +1,23 @@
-{# Modèle de page #}
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="description" content="Fiche Civil">
-    <meta name="author" content="Xelyos Team - Thomas">
-    <meta name="keywords" content="Fiche civil, {{ _nomFaction }}, Site Factice, {{ _jeuServeur }}, {{ _nomServeur }}">
-    <title>Intervention n°{{ civil.id }}</title>
+{#
+  Le projet All in One est un produit Xelyos mis à disposition gratuitement
+  pour tous les serveurs de jeux Role Play. En échange nous vous demandons de
+  ne pas supprimer le ou les auteurs du projet.
+  Created by : Xelyos - Aros
+  Edited by :
+#}
 
-    <style media="screen">
-      img {
-        position: fixed;
-        top: -45px; left: -45px;
-        z-index: 0;
-        max-width: 790px;
-      }
+{% extends "/impression/_model.twig" %}
 
-      h1 {
-        text-align: center;
-        z-index: 1;
-        margin-top: 50px;+
-      }
+{% block title %}Intervention sur {{ civil.nom }} {{ civil.prenom }}{% endblock %}
 
-      h2 {
-        text-decoration: underline overline #FF3028;
-        z-index: 1;
-      }
+{% block titre %}Intervention sur {{ civil.nom }} {{ civil.prenom }}{% endblock %}
 
-      p {
-        margin-left: 20px;
-        z-index: 1;
-      }
-    </style>
-  </head>
+{% block main %}
+  <h2>Information {{ _membreFaction }}</h2>
+  <p><strong>Identifiant :</strong> {{ ems.matricule }}</p>
+  <p><strong>Nom :</strong> {{ ems.nom }} {{ ems.prenom }}</p>
 
-  <body>
-    <img src="{{ img }}" alt="">
-
-    <h1>Intervention n°{{ intervention.inter_id }}</h1>
-    {% include "/templates/impression_civil.twig"%}
-
-    <h2>Information {{ _membreFaction }}</h2>
-    <p><strong>Identifiant :</strong> {{ ems.matricule }}</p>
-    <p><strong>Nom :</strong> {{ ems.nom|capitalize }} {{ ems.prenom|capitalize }}</p>
-
-    <h2>Détails Intervention</h2>
-    <p><strong>Détails :</strong> {{ intervention.rapport }}</p>
-
-
-  </body>
-
-</html>
+  <h2>Détails Intervention</h2>
+  <p><strong>Titre :</strong> {{ intervention.nom_inter }}</p>
+  <p><strong>Détails :</strong> {{ intervention.rapport }}</p>
+{% endblock %}

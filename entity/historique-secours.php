@@ -17,6 +17,7 @@ class Historique_EMS extends Model {
                           ->order_by_desc('id')
                           ->find_many();
   }
+  
   public static function getNbAction($matricule) {
     return Historique_EMS::where('matricule', $matricule)
                          ->count();

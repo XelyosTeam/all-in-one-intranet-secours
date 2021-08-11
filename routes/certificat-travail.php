@@ -19,7 +19,9 @@ Flight::route('/certificat-travail', function() {
 Flight::route('/certificat-travail/@id_certificat', function($id_certificat) {
   verif_connecter();
   $certificat = Certificat::getCertificat($id_certificat);
-  $certificat->motif = renderHTMLFromMarkdown(htmlspecialchars(strip_tags($certificat->motif)));
+  // Traitement texte
+  $certificat->job_vise = urldecode($certificat->job_vise);
+  $certificat->motif = renderHTMLFromMarkdown(htmlspecialchars(strip_tags(urldecode($certificat->motif))));
 
   Flight::view()->display('fiche/certificat.twig', array(
     'civil' => Personne::getinfoPersonne($certificat->personne),
@@ -28,4 +30,13 @@ Flight::route('/certificat-travail/@id_certificat', function($id_certificat) {
   ));
 });
 
+Flight::route('/certificat-travail/@id_certificat/impression', function($id_certificat) {
+  verif_connecter();
+  $impression = new generatePDF();
+
+  $certificat = Certificat::getCertificat($id_certificat);
+  $certificat->job_vise = urldecode($certificat->job_vise);
+  $certificat->motif = urldecode($certificat->motif);
+  $impression->travail($certificat);
+});
 ?>

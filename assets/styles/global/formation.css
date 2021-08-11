@@ -6,8 +6,7 @@
   Edited by :
 */
 
-nav
-{
+nav {
   position: fixed;
   left: 3%;
   top: 47%;
@@ -16,8 +15,7 @@ nav
   padding: 1% 1% 1% 1%;
 }
 
-nav a
-{
+nav a {
   display: block;
   padding-top: 1%;
   text-decoration: none;
@@ -25,21 +23,18 @@ nav a
   font-size: 1.1em;
 }
 
-nav a:hover
-{
+nav a:hover {
   color: var(--Text);
 }
 
-nav p
-{
+nav p {
   font-weight: bold;
   text-decoration: underline;
   color: var(--Text);
   font-size: 1.2em;
 }
 
-.contenu
-{
+.contenu {
   display: block;
   margin-top: 2%;
   margin-left: 25%;
@@ -49,15 +44,13 @@ nav p
   text-align: center;
 }
 
-.contenu h1
-{
+.contenu h1 {
   padding-top: 1%;
   padding-left: 2%;
   color: var(--Text);
 }
 
-.contenu h2
-{
+.contenu h2 {
   text-align: left;
   padding-top: 1%;
   padding-left: 2%;
@@ -65,37 +58,35 @@ nav p
   text-decoration: underline;
 }
 
-.contenu h3
-{
+.contenu h3 {
   text-align: left;
-  margin-bottom: -2%;
   padding-left: 2%;
   text-decoration: underline;
 }
 
-.contenu p
-{
+.contenu p {
   padding: 0 4% 2% 4%;
   text-align: justify;
   font-size: 1.5em;
 }
 
-.contenu a
-{
+.contenu a {
   padding: 0% 2% 2% 2%;
   text-align: center;
   font-size: 1.25em;
   color: #000;
 }
 
-.contenu a:hover
-{
+.contenu a:hover {
   color: var(--Text);
   text-decoration: underline;
 }
 
-.contenu img
-{
+.contenu img {
   display: block;
   margin: 0 auto;
+}
+
+.contenu ul {
+  text-align: left;
 }

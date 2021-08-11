@@ -7,8 +7,7 @@
 */
 
 /* PC */
-nav
-{
+nav {
   position: fixed;
   left: 3%;
   top: 47%;
@@ -17,8 +16,7 @@ nav
   padding: 1% 1% 1% 1%;
 }
 
-nav a
-{
+nav a {
   display: block;
   padding-top: 1%;
   text-decoration: none;
@@ -26,21 +24,18 @@ nav a
   font-size: 1.1em;
 }
 
-nav a:hover
-{
+nav a:hover {
   color: var(--navBarHover);
 }
 
-nav p
-{
+nav p {
   font-weight: bold;
   text-decoration: underline;
   color: #900000;
   font-size: 1.2em;
 }
 
-.contenu
-{
+.contenu {
   display: block;
   margin-top: 2%;
   margin-left: 25%;
@@ -49,8 +44,7 @@ nav p
   background-color: var(--background);
 }
 
-.connexion div p
-{
+.connexion div p {
   color: var(--Text);
   font-weight: bold;
   font-size: 1.2em;
@@ -58,8 +52,7 @@ nav p
   margin-left: 10%;
 }
 
-.contenu h1
-{
+.contenu h1 {
   text-align: center;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -67,8 +60,7 @@ nav p
   border-bottom: 2px solid var(--Text);
 }
 
-.contenu div label
-{
+.contenu div label {
   margin-left: 3%;
   text-align: left;
   font-weight: bold;
@@ -76,8 +68,7 @@ nav p
   font-size: 1.25em;
 }
 
-.contenu div input
-{
+.contenu div input {
   border: none;
   border-bottom: 1px solid #000;
   margin-left: 5%;
@@ -90,8 +81,7 @@ nav p
   font-size: 1.5em;
 }
 
-.contenu div select
-{
+.contenu div select {
   border: none;
   border-bottom: 1px solid #000;
   margin-left: 5%;
@@ -104,8 +94,7 @@ nav p
   font-size: 1.5em;
 }
 
-.contenu div textarea
-{
+.contenu div textarea {
   border: none;
   border-bottom: 1px solid #000;
   text-align: justify;
@@ -118,18 +107,15 @@ nav p
   font-size: 1.5em;
 }
 
-.contenu .short
-{
+.contenu .short {
   width: 30%;
 }
 
-.contenu .btn
-{
+.contenu .btn {
   text-align: right;
 }
 
-.contenu .btn button
-{
+.contenu .btn button {
   text-align: right;
   margin-right: 5%;
   margin-bottom: 2%;

@@ -43,7 +43,7 @@ Flight::route('/medicament/add/ordonnance', function() {
 
   $id = $_POST['personne_type'];
   $agent = Agent::getInfoAgent();
-  $date = addOronnance($id, $agent->ems_id);
+  $date = addOronnance($id, $agent);
   $info = Ordonnance::getLastOrdonnance($id, $agent->ems_id, $date);
 
   $data = [
@@ -84,5 +84,4 @@ Flight::route('/medicament/edit/desc', function() {
     addHistorique(Agent::getInfoAgent()->matricule, "0¤2¤1¤" . $id . "¤" . $old->description . "¤" . $desc);
   }
 });
-
 ?>

@@ -16,13 +16,16 @@ class Certificat extends Model {
     return Certificat::where('personne', $id)
                 ->find_many();
   }
+  
   public static function getCertificat($id) {
     return Certificat::where('id', $id)
                 ->find_one();
   }
+  
   public static function getIDCertificat($id, $matricule) { // Récuparatoin de l'ID d'une personne enfonction de son nom et prénom
     return Certificat::where(array('personne' => $id, 'enregistrer_par' => $matricule))->order_by_desc('id')->find_one();
   }
+  
   public static function getNbCertificat($id_ems) {
     return Certificat::where('enregistrer_par', $id_ems)
                      ->count();

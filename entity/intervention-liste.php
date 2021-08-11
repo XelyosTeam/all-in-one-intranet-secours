@@ -15,6 +15,7 @@ class InterventionList extends Model {
   public static function getList() { // On récupère la liste du casier judiciaire avec l'ID de la personne
     return InterventionList::order_by_asc('intitule')->find_many();
   }
+  
   public static function getInterID($name) {
     return InterventionList::where('intitule', $name)->find_one();
   }

@@ -22,11 +22,13 @@ class Ordonnance extends Model {
                       ->order_by_desc('id')
                       ->find_one();
   }
+  
   public static function getListID($id) { // On récupère la liste du casier judiciaire avec l'ID de la personne
     return Ordonnance::where('patient', $id)
                      ->order_by_desc('enregistrer_le')
                      ->find_many();
   }
+  
   public static function getInfo($id) { // On récupère la liste du casier judiciaire avec l'ID de la personne
     return Ordonnance::where('id', $id)
                      ->find_one();

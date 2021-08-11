@@ -70,14 +70,15 @@
           <li><a href="/" class="top">Compte</a>
             <ul>
               <li><a href="/formation">Formation</a></li>
+              <li><a href="/documents">Documents</a></li>
             </ul>
           </li>
         </ul>
         <ul class="menu_deroulant">
-          <li><a class="top">Registre</a>
-            <ul>
+          <li><a href="/civil?civil_name=&civil_firstname=&civil_phone=" class="top">Registre</a>
+            <!-- <ul>
               <li><a href="/civil?civil_name=&civil_firstname=&civil_phone=">Civil</a></li>
-            </ul>
+            </ul> -->
           </li>
         </ul>
         <ul class="menu_deroulant">
@@ -125,13 +126,15 @@
         <button id="3" type="button" onclick="afficheSousMenu(3)">Info</button>
         <button id="30" type="button" onclick="redirectionButton(30, 0)">Compte</button>
         <button id="31" type="button" onclick="redirectionButton(31, 0)">Formation</button>
-        <button id="32" type="button" onclick="maskSousMenu()">Retour</button>
+        <button id="32" type="button" onclick="redirectionButton(32, 0)">Documents</button>
+        <button id="33" type="button" onclick="maskSousMenu()">Retour</button>
 
         {# Registre #}
-        <button id="4" type="button" onclick="afficheSousMenu(4)">Registre</button>
+        <button id="4" type="button" onclick="redirectionButton(40, 0)">Registre</button>
+        <!-- <button id="4" type="button" onclick="afficheSousMenu(4)">Registre</button> -->
 
-        <button id="40" type="button" onclick="redirectionButton(40, 0)">Civil</button>
-        <button id="41" type="button" onclick="maskSousMenu()">Retour</button>
+        <!-- <button id="40" type="button" onclick="redirectionButton(40, 0)">Civil</button> -->
+        <!-- <button id="41" type="button" onclick="maskSousMenu()">Retour</button> -->
 
         {# Soins #}
         <button id="5" type="button" onclick="afficheSousMenu(5)">Soins</button>

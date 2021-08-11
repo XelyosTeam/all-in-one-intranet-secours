@@ -15,6 +15,7 @@ class Medicament_Liste extends Model {
   public static function getList() { // On récupère la liste du casier judiciaire avec l'ID de la personne
     return Medicament_Liste::order_by_asc('nom')->find_many();
   }
+  
   public static function getInfo($id) { // On récupère la liste du casier judiciaire avec l'ID de la personne
     return Medicament_Liste::where('id', $id)->find_one();
   }

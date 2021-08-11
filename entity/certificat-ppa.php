@@ -16,13 +16,16 @@ class PPA extends Model {
     return PPA::where('personne', $id)
                 ->find_many();
   }
+  
   public static function getCertificat($id) {
     return PPA::where('id', $id)
                 ->find_one();
   }
+  
   public static function getIDPPA($id, $matricule) { // Récuparatoin de l'ID d'une personne enfonction de son nom et prénom
     return PPA::where(array('personne' => $id, 'enregistrer_par' => $matricule))->order_by_desc('id')->find_one();
   }
+  
   public static function getPPA($id_ems) {
     return PPA::where('enregistrer_par', $id_ems)
               ->count();

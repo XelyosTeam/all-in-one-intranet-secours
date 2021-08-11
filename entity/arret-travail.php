@@ -17,13 +17,16 @@ class Arret extends Model {
                 ->order_by_desc('fin_le')
                 ->find_many();
   }
+  
   public static function getArret($id) {
     return Arret::where('id', $id)
                 ->find_one();
   }
+  
   public static function getIDArret($id, $matricule) { // Récuparatoin de l'ID d'une personne enfonction de son nom et prénom
     return Arret::where(array('personne' => $id, 'enregistrer_par' => $matricule))->order_by_desc('id')->find_one();
   }
+  
   public static function getNbArret($id_ems) {
     return Arret::where('enregistrer_par', $id_ems)
                 ->count();

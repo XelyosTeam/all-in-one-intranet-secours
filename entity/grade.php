@@ -15,9 +15,11 @@ class Grade extends Model {
   public static function getList() { // On récupère la liste du casier judiciaire avec l'ID de la personne
     return Grade::order_by_desc('position')->find_many();
   }
+  
   public static function getGrade($id) {
     return Grade::where('id', $id)->find_one();
   }
+  
   public static function getGradePosition($pos) {
     return Grade::where('position', $pos)
       ->find_one();

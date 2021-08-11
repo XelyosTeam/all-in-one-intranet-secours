@@ -27,4 +27,7 @@ include "ordonnance-table.php";
 include "personne.php";
 include "secours.php";
 include "vehicles.php";
+include 'document.php'; // Documents
+include 'folder.php'; // Documents
+include 'historique-document.php'; // Documents
 ?>

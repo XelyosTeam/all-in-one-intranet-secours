@@ -10,17 +10,17 @@
 
 {% block key %}Fiche {{ _BDDFaction }}{% endblock %}
 
-{% block title %} - Modification {{ perso.nom|capitalize }} {{ perso.prenom|capitalize }}{% endblock %}
+{% block title %} - Modification {{ perso.nom }} {{ perso.prenom }}{% endblock %}
 
 {% block main %}
 <form action="/civil/{{ perso.id }}/modification" method="post">
   <section class="info_personne">
     <h1 {% if perso.present == 0 %}style="color:#ff0000"{% endif %}>Fiche Citoyen</h1>
-    <img src="http://{{ _CopServeur }}/assets/img/identité/{{ perso.photo }}" alt="Photo {{ perso.nom|capitalize }} {{ perso.prenom|capitalize }}">
-    <p><strong>Nom :</strong>{{ perso.nom|capitalize }}</p>
-    <p><strong>Prénom :</strong>{{ perso.prenom|capitalize }}</p>
+    <img class="round_profil" src="http://{{ _CopServeur }}/assets/img/identite/{{ perso.photo }}" alt="Photo {{ perso.nom }} {{ perso.prenom }}">
+    <p><strong>Nom :</strong>{{ perso.nom }}</p>
+    <p><strong>Prénom :</strong>{{ perso.prenom }}</p>
     <p><strong>Date de naissance :</strong>{{ perso.DOB|date("d/m/Y") }}</p>
-    <p><strong>Téléphone :</strong>{{ perso.phone }}</p>
+    <p><strong>Téléphone :</strong><textarea name="telephone" rows="1">{{ perso.phone }}</textarea></p>
     <p><strong>Nationalité :</strong>{{ perso.nationality|upper }}</p>
     <p><strong>Sexe :</strong>{{ perso.sexe|upper }}</p>
     <p><strong>Groupe Sanguin :</strong><textarea name="sang" rows="1">{{ perso.grp_sanguin }}</textarea></p>
@@ -34,9 +34,9 @@
         <option value="1">Oui</option>
       {% endif %}
     </select></p>
-    <p><strong>Job :</strong><a href="{% if perso.job == _BDDFaction %}/{{ _membreFaction }}/{{ ems.matricule }}{% endif %}">{{ perso.job|capitalize }}</a></p>
+    <p><strong>Job :</strong><a href="{% if perso.job == _BDDFaction %}/{{ _membreFaction }}/{{ ems.matricule }}{% endif %}">{{ perso.job }}</a></p>
     <p><strong>PPA :</strong>{% if perso.ppa == 1  %}Oui{% else %}Non{% endif %}</p>
-    <p><strong>Permis :</strong>{% if perso.permis == 1  %}Oui{% else %}Non{% endif %}</p>
+    <p><strong>Permis :</strong>{{ perso.permis }} points</p>
     <div class="btn_modif">
       <button class="form_button" type="submit" name="button">Appliquer la modification</button>
     </div>
@@ -50,7 +50,7 @@
   {% for intervention in interventions %}
   <div class="content">
     <img src="/assets/img/logo.png" alt="Logo {{ _nomFaction }}">
-    <p>{{ intervention.nom_inter|capitalize }}</p>
+    <p>{{ intervention.nom_inter }}</p>
     <a href="/intervention/{{ intervention.id }}">Consulter</a>
   </div>
   {% else %}
@@ -83,7 +83,7 @@
 
   {% for certificat in certificats %}
   <div class="content">
-    <p>{{ certificat.job_vise|capitalize }}</p>
+    <p>{{ certificat.job_vise }}</p>
     <p>
       {% if certificat.etat_job == 0 %}
       Refusé

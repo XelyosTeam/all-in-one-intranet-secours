@@ -6,9 +6,12 @@
     Created by : Xelyos - Aros
     Edited by :
   */
-  function editCivil($id_civil, $sang, $donneur) {
-    $civil = Model::factory('Personne')->where('id', $id_civil)->find_one();
-    $civil->set(array('grp_sanguin' => $sang, 'donneur' => $donneur));
+  function editCivil($id_civil, $sang, $donneur, $phone) {
+    $civil = Model::factory('Personne')->where('id', $id_civil)->find_one();$civil->set(array(
+      'grp_sanguin' => $sang,
+      'donneur' => $donneur,
+      'phone' => $phone
+    ));
     $civil->save();
   }
 

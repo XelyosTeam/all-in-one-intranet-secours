@@ -32,7 +32,7 @@
   function verif_connecter() {
     /* Vérification que la personne soit bien connecté */
     if (Session::get('matricule_ems') == NULL) {
-      Flight::redirect("/connexion");
+      Flight::redirect("/connexion?url=" . urlencode(Flight::request()->url));
       exit();
     }
     /* Vérification que la personne soit bien connecté */
@@ -45,7 +45,7 @@
       $data[$key] = [
         'id' => $msg->id,
         'author' => $msg->author,
-        'message'=>$msg->message,
+        'message'=> urldecode($msg->message),
         'side'=> $msg->side,
         'send_time'=> $msg->send_time
       ];
@@ -61,7 +61,7 @@
     $chat = Model::factory('Chat')->create();
     $chat->set(array(
                   'author' => "$agent->nom " .  $agent->prenom[0] .".",
-                  'message' => $content,
+                  'message' => urlencode($content),
                   'side' => "ems",
                   'send_time' => date("Y-m-d H:i:s")
                 )
@@ -77,12 +77,42 @@
     return Markdown::defaultTransform($string_markdown_formatted);
   }
 
-  function getStructure($path) {
-    $file = file_get_contents($path . "/content/index.json", TRUE);
+  function getStructure($path, $name) {
+    $file = file_get_contents($path . "/content/$name.json", TRUE);
     return json_decode($file);
   }
 
   function getFileContent($path, $file) {
     return file_get_contents($path . "/content/" . $file);
   }
+
+  /* Ajout d'un fichier en lui intégrant un timestamp*/
+function uploadFile($destination, $maxsize, $file, $extensionArray) {
+  /* check Size */
+  if ($file['size'] > $maxsize) {
+    return false;
+  }
+
+  /* Check Extensions */
+  if (!in_array(strtolower(explode(".", $file['name'])[count(explode(".", $file['name']))-1]), $extensionArray)) {
+    return false;
+  }
+
+  /* Rename file */
+  $explode = explode(".", $file['name']);
+  $file['name'] = implode('.',array_slice($explode, 0, count($explode) - 1)) . '-' . time() . "." . $explode[count($explode) - 1];
+  $toReplace = array(" ", '_', '"', "'", "/", "\\", "(", ")");
+  $file['name'] = str_replace($toReplace, "-", $file['name']);
+
+  while (strpos($file['name'], '--')) {
+    $file['name'] = str_replace('--', "-", $file['name']);
+  }
+
+  try {
+    move_uploaded_file($file['tmp_name'], $destination . $file['name']);
+    return $file;
+  } catch (\Exception $e) {
+    return false;
+  }
+}
 ?>

@@ -7,23 +7,19 @@
 */
 
 /* PC */
-.red
-{
+.red {
   color: var(--nonHabilite);
 }
 
-.orange
-{
+.orange {
   color: var(--inFormation);
 }
 
-.green
-{
+.green {
   color: var(--Habilite);
 }
 
-.info_personne
-{
+.info_personne {
   float: left;
   display: block;
   margin-left: 10%;
@@ -34,14 +30,12 @@
   padding-bottom: 2%;
 }
 
-.info_personne img
-{
+.info_personne img {
   width: 40%;
   height: auto;
 }
 
-.info_personne .description
-{
+.info_personne .description {
   text-align: center;
   color: var(--profilDescription);
   font-style: italic;
@@ -49,37 +43,32 @@
   margin-right: 1%;
 }
 
-.info_personne h1
-{
+.info_personne h1 {
   padding-top: 2%;
   padding-bottom: 1%;
   color: var(--Text);
   border-bottom: 2px solid var(--Text);
 }
 
-.info_personne p strong
-{
+.info_personne p strong {
   text-align: left;
   color: var(--Text);
   font-size: 1.25em;
   margin-right: 3%;
 }
 
-.info_personne p
-{
+.info_personne p {
   text-align: left;
   margin-left: 3%;
   font-weight: bold;
   font-size: 1.2em;
 }
 
-.info_personne .lien
-{
+.info_personne .lien {
   margin-top: 5%;
 }
 
-.info_personne .lien a, .btn_modif button, .information_casier .lien a, .information_medicament .lien a
-{
+.info_personne .lien a, .btn_modif button, .information_casier .lien a, .information_medicament .lien a {
   border: none;
   border-radius: 10px;
   background-color: var(--Text);
@@ -88,19 +77,16 @@
   font-size: 1.25em;
 }
 
-.info_personne .lien a:hover, .btn_modif button:hover, .information_casier .lien a:hover, .information_medicament .lien a:hover
-{
+.info_personne .lien a:hover, .btn_modif button:hover, .information_casier .lien a:hover, .information_medicament .lien a:hover {
   color: var(--navBarHover);
 }
 
-.btn_modif, .information_casier .lien, .information_medicament .lien
-{
+.btn_modif, .information_casier .lien, .information_medicament .lien {
   margin-top: 2%;
   margin-left: 2%;
 }
 
-.habilitation
-{
+.habilitation {
   display: block;
   margin-left: 37%;
   width: 58%;
@@ -110,22 +96,19 @@
   padding-bottom: 2%;
 }
 
-.habilitation h1
-{
+.habilitation h1 {
   padding-top: 2%;
   padding-bottom: 1%;
   color: var(--Text);
   border-bottom: 2px solid var(--Text);
 }
 
-.habilitation p
-{
+.habilitation p {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
-.habilitation select
-{
+.habilitation select {
   margin: 0 auto;
   font-weight: bold;
   font-size: 1.2em;
@@ -133,14 +116,12 @@
   margin-bottom: 2%;
 }
 
-.habilitation .grille
-{
+.habilitation .grille {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
-.liste
-{
+.liste {
   display: block;
   margin-top: 2.5%;
   margin-left: 37%;
@@ -150,16 +131,14 @@
   padding-bottom: 0.5%;
 }
 
-.liste p strong
-{
+.liste p strong {
   text-align: left;
   color:  var(--Text);
   font-size: 1.25em;
   margin-right: 3%;
 }
 
-.liste .ferm
-{
+.liste .ferm {
   margin-left: 90%;
   font-weight: bold;
   font-size: 1.2em;
@@ -168,38 +147,33 @@
   padding: 1%
 }
 
-.liste .ferm:hover
-{
+.liste .ferm:hover {
   color: var(--BoutonTextHover);
 }
 
-.liste h1
-{
+.liste h1 {
   padding-top: 1%;
   color: var(--Text);
   border-bottom: 2px solid var(--Text);
   text-align: center;
 }
 
-.liste .content
-{
+.liste .content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2%;
   border-bottom: 0.5px solid var(--Text);
 }
 
-.liste .content img
-{
-  width: 30%;
+.liste .content img {
+  width: 15%;
   height: auto;
-  margin-top: 5%;
-  margin-left: 20%;
+  margin-left: 30%;
   margin-bottom: 5%;
+  margin-top: 1%;
 }
 
-.liste .content p
-{
+.liste .content p {
   white-space: nowrap;
   text-align: center;
   height: auto;
@@ -208,8 +182,7 @@
   font-weight: bold;
 }
 
-.liste .content a
-{
+.liste .content a {
   height: auto;
   margin-top: 15%;
   text-align: right;
@@ -220,8 +193,7 @@
   font-size: 1.5em;
 }
 
-.liste .content a:hover
-{
+.liste .content a:hover {
   color: var(--BoutonTextHover);
 }
 
@@ -236,32 +208,28 @@
   padding-bottom: 1%;
 }
 
-.information_casier h1, .information_medicament h1
-{
+.information_casier h1, .information_medicament h1 {
   padding-top: 2%;
   color: var(--Text);
   border-bottom: 2px solid var(--Text);
   text-align: center;
 }
 
-.information_casier p strong, .information_medicament p strong
-{
+.information_casier p strong, .information_medicament p strong {
   text-align: left;
   color: var(--Text);
   font-size: 1.25em;
   margin-right: 1%;
 }
 
-.information_casier p, .information_medicament p
-{
+.information_casier p, .information_medicament p {
   text-align: left;
   margin-left: 2%;
   font-weight: bold;
   font-size: 1.2em;
 }
 
-.information_casier .remarque, .information_medicament .remarque
-{
+.information_casier .remarque, .information_medicament .remarque {
   text-align: justify;
   padding-left: 1%;
   padding-right: 3%;
@@ -269,15 +237,13 @@
   font-size: 1.2em;
 }
 
-.information_casier img, .information_medicament img
-{
+.information_casier img, .information_medicament img {
   margin-left: 42.5%;
   width: 15%;
   height: auto;
 }
 
-.information_medicament table
-{
+.information_medicament table {
   border-collapse: collapse;
   margin: 0 auto;
   width: 90%;
@@ -285,31 +251,26 @@
   font-size: 1.25em;
 }
 
-.information_medicament td
-{
+.information_medicament td {
   border: 1px solid black;
 }
 
-.information_medicament thead tr
-{
+.information_medicament thead tr {
   font-weight: bold;
   color: var(--navBarText);
   background: var(--navBarBack);
 }
 
-.information_medicament tbody tr .desc
-{
+.information_medicament tbody tr .desc {
   width: 50%;
   text-align: justify;
   padding: 1% 2% 1% 2%;
 }
 
-.information_medicament tbody tr:nth-child(odd)
-{
+.information_medicament tbody tr:nth-child(odd) {
   background-color: var(--background);
 }
 
-.information_medicament tbody tr:nth-child(even)
-{
+.information_medicament tbody tr:nth-child(even) {
   background-color: var(--profilDescription);
 }

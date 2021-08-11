@@ -1,6 +1,6 @@
 <section class="info_personne">
   <h1 {% if civil.present == 0 %}style="color:#ff0000"{% endif %}>Fiche Citoyen</h1>
-  <img class="round_profil" src="http://{{ _CopServeur }}/assets/img/identité/{{ civil.photo }}" alt="Photo {{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}">
+  <img class="round_profil" src="http://{{ _CopServeur }}/assets/img/identite/{{ civil.photo }}" alt="Photo {{ civil.nom|capitalize }} {{ civil.prenom|capitalize }}">
   <p><strong>Nom :</strong>{{ civil.nom|capitalize }}</p>
   <p><strong>Prénom :</strong>{{ civil.prenom|capitalize }}</p>
   <p><strong>Date de naissance :</strong>{{ civil.DOB|date("d/m/Y") }}</p>
@@ -15,14 +15,14 @@
     <p><strong>Job :</strong><a href="{% if civil.job == _BDDFaction  %}/{{ _membreFaction }}/{{ ems.matricule }}{% endif %}">{{ civil.job|capitalize }}</a></p>
   {% endif %}
   <p><strong>PPA :</strong>{% if civil.ppa == 1  %}Oui{% else %}Non{% endif %}</p>
-  <p><strong>Permis :</strong>{% if civil.permis == 1  %}Oui{% else %}Non{% endif %}</p>
+  <p><strong>Permis :</strong>{{ civil.permis }} points</p>
   {% if _etat_.goBack == 1 %}
     <div class="lien">
       <a href="/civil/{{ civil.id }}">Retourner sur la fiche de {{ civil.nom|capitalize }} {{ perso.prenom|capitalize }}</a>
     </div>
   {% else %}
     <div class="lien">
-      <a href="/impression/civil/{{ civil.id }}">Imprimer le dossier</a>
+      <a href="/civil/{{ civil.id }}/impression">Imprimer le dossier</a>
     </div>
 
     <div class="lien">

@@ -52,13 +52,18 @@ Flight::route('/administration/parametre-serveur', function() {
   ));
 });
 
-Flight::route('/administration/parametre-serveur/modification', function() {
+Flight::route('POST /administration/parametre-serveur/modification', function() {
   verif_connecter();
   verif_admin();
 
   if ($_POST['failed_connexion'] != '') {
     editserveurIni('Parametre', 'echec_maximum', $_POST['failed_connexion']);
     addHistorique(Session::get('matricule_ems'), "0¤0¤0¤" . $_POST['failed_connexion']);
+  }
+
+  if ($_POST['etat_recrut'] != '') {
+    editserveurIni('Faction', 'etatRecrutement', $_POST['etat_recrut']);
+    addHistorique(Session::get('matricule_ems'), "0¤0¤1¤" . $_POST['etat_recrut']);
   }
 
   Flight::redirect("/administration/parametre-serveur");
