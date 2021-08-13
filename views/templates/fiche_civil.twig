@@ -15,7 +15,7 @@
     <p><strong>Job :</strong><a href="{% if civil.job == _BDDFaction  %}/{{ _membreFaction }}/{{ ems.matricule }}{% endif %}">{{ civil.job|capitalize }}</a></p>
   {% endif %}
   <p><strong>PPA :</strong>{% if civil.ppa == 1  %}Oui{% else %}Non{% endif %}</p>
-  <p><strong>Permis :</strong>{{ civil.permis }} points</p>
+  <p><strong>Permis :</strong>{% if civil.permis == 1  %}Oui{% else %}Non{% endif %}</p>
   {% if _etat_.goBack == 1 %}
     <div class="lien">
       <a href="/civil/{{ civil.id }}">Retourner sur la fiche de {{ civil.nom|capitalize }} {{ perso.prenom|capitalize }}</a>

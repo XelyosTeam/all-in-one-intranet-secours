@@ -36,7 +36,7 @@
     </select></p>
     <p><strong>Job :</strong><a href="{% if perso.job == _BDDFaction %}/{{ _membreFaction }}/{{ ems.matricule }}{% endif %}">{{ perso.job }}</a></p>
     <p><strong>PPA :</strong>{% if perso.ppa == 1  %}Oui{% else %}Non{% endif %}</p>
-    <p><strong>Permis :</strong>{{ perso.permis }} points</p>
+    <p><strong>Permis :</strong>{% if civil.permis == 1  %}Oui{% else %}Non{% endif %}</p>
     <div class="btn_modif">
       <button class="form_button" type="submit" name="button">Appliquer la modification</button>
     </div>
